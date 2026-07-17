@@ -19,11 +19,13 @@ const { experience } = Astro.props;
 ---
 
 <section class="section" id="experience">
-  <SectionHeading icon="02" title={experience.title} />
+  <div class="reveal reveal--up">
+    <SectionHeading icon="briefcase" title={experience.title} />
+  </div>
 
   <div class="experience-list">
-    {experience.items.map((item) => (
-      <article class="experience-card">
+    {experience.items.map((item, index) => (
+      <article class="experience-card reveal reveal--up" style={`--reveal-delay: ${120 + index * 80}ms;`}>
         <div class="experience-card__top">
           <div>
             <h3>{item.company}</h3>

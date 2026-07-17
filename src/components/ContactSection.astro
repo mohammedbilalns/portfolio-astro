@@ -47,10 +47,12 @@ const linkEntries = [
 ---
 
 <section class="section" id="contact">
-  <SectionHeading icon="05" title={contact.title} subtitle={contact.subtitle} />
+  <div class="reveal reveal--up">
+    <SectionHeading icon="sparkles" title={contact.title} subtitle={contact.subtitle} />
+  </div>
 
   <div class="contact-grid">
-    <article class="panel contact-card">
+    <article class="panel contact-card reveal reveal--up" style="--reveal-delay: 120ms;">
       <p class="contact-card__description">{contact.description}</p>
 
       <div class="contact-card__facts">
@@ -69,7 +71,7 @@ const linkEntries = [
       </div>
     </article>
 
-    <article class="panel form-card">
+    <article class="panel form-card reveal reveal--up" style="--reveal-delay: 200ms;">
       <h3>{contact.form.title}</h3>
 
       <form

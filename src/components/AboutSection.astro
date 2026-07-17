@@ -22,14 +22,16 @@ const { about, education } = Astro.props;
 ---
 
 <section class="section" id="about">
-  <SectionHeading icon="01" title={about.title} />
+  <div class="reveal reveal--up">
+    <SectionHeading icon="user" title={about.title} />
+  </div>
 
   <div class="about-grid">
-    <article class="panel prose-card">
+    <article class="panel prose-card reveal reveal--up" style="--reveal-delay: 120ms;">
       <p>{about.description}</p>
     </article>
 
-    <aside class="panel aside-card">
+    <aside class="panel aside-card reveal reveal--up" style="--reveal-delay: 180ms;">
       <h3>{education.title}</h3>
       <div class="edu-list">
         {education.items.map((item) => (

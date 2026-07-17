@@ -1,30 +1,18 @@
 ---
-interface NavItem {
-  label: string;
-  href: string;
-}
-
 interface Props {
   logo: string;
   name: string;
-  navigation: NavItem[];
 }
 
-const { logo, name, navigation } = Astro.props;
+const { logo, name } = Astro.props;
 ---
 
-<header class="site-header">
+<header class="site-header reveal reveal--down">
   <div class="site-header__inner">
     <a class="brand" href="#home" aria-label={`${name} home`}>
       <span class="brand__mark">{logo}</span>
       <span class="brand__name">{name.toLowerCase().replace(/\s+/g, "")}</span>
     </a>
-
-    <nav class="desktop-nav" aria-label="Primary">
-      {navigation.map((item) => (
-        <a href={item.href}>{item.label}</a>
-      ))}
-    </nav>
 
     <div class="header-clock" id="header-clock" aria-live="off">--:--:--</div>
   </div>
@@ -42,27 +30,3 @@ const { logo, name, navigation } = Astro.props;
   updateTime();
   setInterval(updateTime, 1000);
 </script>
-
-<style>
-  .desktop-nav {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .desktop-nav a {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    transition: color 160ms ease;
-  }
-
-  .desktop-nav a:hover {
-    color: var(--text);
-  }
-
-  @media (max-width: 720px) {
-    .desktop-nav {
-      display: none;
-    }
-  }
-</style>

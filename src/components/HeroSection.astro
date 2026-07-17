@@ -1,4 +1,6 @@
 ---
+import Icon from "./Icon.astro";
+
 interface ContactDetails {
   email: string;
   location: string;
@@ -22,39 +24,53 @@ interface Props {
 const { hero, contact } = Astro.props;
 
 const socialLinks = [
-  { label: "GitHub", href: contact.github, accent: "social-link--orange" },
-  { label: "LinkedIn", href: contact.linkedin, accent: "social-link--blue" },
-  { label: "LeetCode", href: contact.leetcode, accent: "social-link--gold" },
+  { label: "GitHub", href: contact.github, icon: "github", accent: "social-link--orange" },
+  { label: "LinkedIn", href: contact.linkedin, icon: "linkedin", accent: "social-link--blue" },
+  { label: "LeetCode", href: contact.leetcode, icon: "leetcode", accent: "social-link--gold" },
 ];
 ---
 
 <section class="hero section" id="home">
-  <div class="hero__media panel">
+  <div class="hero__media reveal reveal--scale" style="--reveal-delay: 80ms;">
     <div class="hero__avatar" aria-hidden="true">MB</div>
-    <p class="hero__meta">{contact.location}</p>
+    <p class="hero__meta">
+      <Icon name="location" class="hero__meta-icon" />
+      {contact.location}
+    </p>
     <div class="hero__socials">
-      {socialLinks.map((link) => (
-        <a class={`social-link ${link.accent}`} href={link.href} target="_blank" rel="noreferrer">
-          {link.label}
+      {socialLinks.map((link, index) => (
+        <a
+          class={`social-link ${link.accent} reveal reveal--up`}
+          style={`--reveal-delay: ${220 + index * 90}ms;`}
+          href={link.href}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={link.label}
+          title={link.label}
+        >
+          <Icon name={link.icon} class="social-link__icon" />
         </a>
       ))}
     </div>
   </div>
 
   <div class="hero__content">
-    <p class="hero__greeting">{hero.greeting}</p>
-    <h1 class="hero__title">{hero.name}</h1>
-    <p class="hero__role">{hero.title}</p>
-    <p class="hero__description">{hero.description}</p>
+    <p class="hero__greeting reveal reveal--up" style="--reveal-delay: 120ms;">{hero.greeting}</p>
+    <h1 class="hero__title reveal reveal--up" style="--reveal-delay: 180ms;">{hero.name}</h1>
+    <p class="hero__role reveal reveal--up" style="--reveal-delay: 240ms;">{hero.title}</p>
+    <p class="hero__description reveal reveal--up" style="--reveal-delay: 320ms;">{hero.description}</p>
 
-    <div class="hero__actions">
+    <div class="hero__actions reveal reveal--up" style="--reveal-delay: 380ms;">
       <a class="button button--primary" href={hero.primaryButton.href}>{hero.primaryButton.text}</a>
       <a class="button button--secondary" href={hero.secondaryButton.href}>
         {hero.secondaryButton.text}
       </a>
     </div>
 
-    <a class="hero__mail" href={`mailto:${contact.email}`}>Work With Me</a>
+    <a class="hero__mail reveal reveal--up" style="--reveal-delay: 460ms;" href={`mailto:${contact.email}`}>
+      <Icon name="mail" class="hero__mail-icon" />
+      Work With Me
+    </a>
   </div>
 </section>
 
@@ -72,6 +88,10 @@ const socialLinks = [
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--panel);
+    box-shadow: var(--shadow);
   }
 
   .hero__avatar {
@@ -93,6 +113,16 @@ const socialLinks = [
     margin: 0;
     color: var(--text-muted);
     font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .hero__meta-icon,
+  .hero__mail-icon,
+  .social-link__icon {
+    width: 1.2rem;
+    height: 1.2rem;
   }
 
   .hero__socials {
@@ -104,12 +134,15 @@ const socialLinks = [
   }
 
   .social-link {
+    width: 3rem;
+    height: 3rem;
+    display: inline-grid;
+    place-items: center;
     border-radius: 999px;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 0.55rem 0.85rem;
-    font-size: 0.9rem;
     color: var(--text-muted);
-    transition: transform 160ms ease, border-color 160ms ease, color 160ms ease;
+    background: rgba(255, 255, 255, 0.02);
+    transition: transform 160ms ease, border-color 160ms ease, color 160ms ease, background 160ms ease;
   }
 
   .social-link:hover {
@@ -119,14 +152,17 @@ const socialLinks = [
 
   .social-link--orange:hover {
     border-color: rgba(249, 115, 22, 0.45);
+    color: #f97316;
   }
 
   .social-link--blue:hover {
     border-color: rgba(96, 165, 250, 0.45);
+    color: #60a5fa;
   }
 
   .social-link--gold:hover {
     border-color: rgba(250, 204, 21, 0.45);
+    color: #facc15;
   }
 
   .hero__greeting,

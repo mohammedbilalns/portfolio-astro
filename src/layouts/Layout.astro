@@ -11,10 +11,9 @@ interface Props {
   title: string;
   description: string;
   logo: string;
-  navigation: NavItem[];
 }
 
-const { title, description, logo, navigation } = Astro.props;
+const { title, description, logo } = Astro.props;
 ---
 
 <!doctype html>
@@ -30,8 +29,25 @@ const { title, description, logo, navigation } = Astro.props;
   </head>
   <body>
     <div class="site-shell">
-      <Header logo={logo} name={title} navigation={navigation} />
+      <Header logo={logo} name={title} />
       <slot />
     </div>
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
+      );
+
+      document.querySelectorAll(".reveal").forEach((element) => {
+        observer.observe(element);
+      });
+    </script>
   </body>
 </html>

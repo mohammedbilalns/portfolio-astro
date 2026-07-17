@@ -13,7 +13,6 @@ import profile from "../data/profile.json";
   title={profile.site.title}
   description={profile.hero.description}
   logo={profile.site.logo}
-  navigation={profile.site.navigation}
 >
   <main class="page-main">
     <HeroSection hero={profile.hero} contact={profile.contact.details} />
@@ -24,7 +23,7 @@ import profile from "../data/profile.json";
     <ContactSection contact={profile.contact} />
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer reveal reveal--up" style="--reveal-delay: 120ms;">
     <p>{profile.site.footer.copyright}</p>
   </footer>
 </Layout>

@@ -1,4 +1,6 @@
 ---
+import Icon from "./Icon.astro";
+
 interface Props {
   icon: string;
   title: string;
@@ -10,7 +12,9 @@ const { icon, title, subtitle } = Astro.props;
 
 <div class="section__heading">
   <div class="section__eyebrow">
-    <span class="section__icon" aria-hidden="true">{icon}</span>
+    <span class="section__icon" aria-hidden="true">
+      <Icon name={icon} class="section__icon-svg" />
+    </span>
     <h2 class="section__title">{title}</h2>
   </div>
   {subtitle && <p class="section__subtitle">{subtitle}</p>}
