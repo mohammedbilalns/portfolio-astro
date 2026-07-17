@@ -25,7 +25,7 @@
       }
     ],
     "footer": {
-      "copyright": "© 2026 Mohammed Bilal N S. Built with React, TypeScript, and TailwindCSS."
+      "copyright": "© 2026 Mohammed Bilal N S. Built with Astro and a custom component system."
     }
   },
   "hero": {

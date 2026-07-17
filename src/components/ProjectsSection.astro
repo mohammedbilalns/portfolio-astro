@@ -1,0 +1,190 @@
+---
+import SectionHeading from "./SectionHeading.astro";
+
+interface ProjectItem {
+  id: string;
+  name: string;
+  category: string;
+  description: string;
+  technologies: string[];
+  features: string[];
+  liveDemo: string;
+  sourceCode: string;
+}
+
+interface Props {
+  projects: {
+    title: string;
+    subtitle: string;
+    items: ProjectItem[];
+  };
+}
+
+const { projects } = Astro.props;
+---
+
+<section class="section" id="projects">
+  <SectionHeading icon="04" title={projects.title} subtitle={projects.subtitle} />
+
+  <div class="projects-list">
+    {projects.items.map((project) => (
+      <article class="project-card">
+        <div class="project-card__media">
+          <div class="project-card__placeholder" aria-hidden="true">
+            <span>{project.name.slice(0, 2).toUpperCase()}</span>
+          </div>
+        </div>
+
+        <div class="project-card__body">
+          <div class="project-card__header">
+            <div>
+              <p class="project-card__category">{project.category}</p>
+              <h3>{project.name}</h3>
+            </div>
+            <div class="project-card__actions">
+              {project.liveDemo && (
+                <a href={project.liveDemo} target="_blank" rel="noreferrer">Live Demo</a>
+              )}
+              {project.sourceCode && (
+                <a href={project.sourceCode} target="_blank" rel="noreferrer">Source</a>
+              )}
+            </div>
+          </div>
+
+          <p class="project-card__description">{project.description}</p>
+
+          <div class="project-card__pills">
+            {project.technologies.map((tech) => (
+              <span>{tech}</span>
+            ))}
+          </div>
+
+          <ul class="project-card__features">
+            {project.features.map((feature) => (
+              <li>{feature}</li>
+            ))}
+          </ul>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .projects-list {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    display: grid;
+    grid-template-columns: minmax(220px, 0.92fr) minmax(0, 1.5fr);
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid rgba(96, 165, 250, 0.2);
+    background: linear-gradient(180deg, rgba(12, 18, 28, 0.5), rgba(12, 12, 12, 0.88));
+  }
+
+  .project-card__media {
+    min-height: 100%;
+    background: rgba(3, 7, 18, 0.95);
+  }
+
+  .project-card__placeholder {
+    height: 100%;
+    min-height: 260px;
+    display: grid;
+    place-items: center;
+    background:
+      radial-gradient(circle at top left, rgba(96, 165, 250, 0.32), transparent 38%),
+      linear-gradient(145deg, rgba(9, 17, 31, 1), rgba(3, 7, 18, 1));
+  }
+
+  .project-card__placeholder span {
+    width: 5.5rem;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.05);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  .project-card__body {
+    padding: 1.5rem;
+  }
+
+  .project-card__header {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .project-card__category,
+  .project-card__description {
+    margin: 0;
+  }
+
+  .project-card__category {
+    color: #8ebeff;
+    margin-bottom: 0.35rem;
+    font-size: 0.92rem;
+  }
+
+  .project-card__header h3 {
+    margin: 0;
+    font-size: 1.45rem;
+  }
+
+  .project-card__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.75rem;
+  }
+
+  .project-card__actions a {
+    color: #9bc7ff;
+    font-size: 0.92rem;
+  }
+
+  .project-card__description {
+    color: #d3dce8;
+    line-height: 1.75;
+  }
+
+  .project-card__pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin: 1rem 0 1.1rem;
+  }
+
+  .project-card__pills span {
+    padding: 0.45rem 0.72rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+    color: #dce7f3;
+    font-size: 0.88rem;
+  }
+
+  .project-card__features {
+    margin: 0;
+    padding-left: 1.15rem;
+    color: var(--text-muted);
+    display: grid;
+    gap: 0.55rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 820px) {
+    .project-card {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
