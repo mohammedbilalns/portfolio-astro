@@ -1,6 +1,9 @@
 ---
+import AboutSection from "../components/AboutSection.astro";
+import ExperienceSection from "../components/ExperienceSection.astro";
+import HeroSection from "../components/HeroSection.astro";
 import Layout from "../layouts/Layout.astro";
-import SectionHeading from "../components/SectionHeading.astro";
+import SkillsSection from "../components/SkillsSection.astro";
 import profile from "../data/profile.json";
 ---
 
@@ -11,20 +14,10 @@ import profile from "../data/profile.json";
   navigation={profile.site.navigation}
 >
   <main class="page-main">
-    <section class="section" id="home">
-      <div class="panel placeholder-copy">
-        Stage 1 foundation complete. The hero section will be implemented next using your profile
-        data and the same visual structure as the `imabhishek` reference.
-      </div>
-    </section>
-
-    <section class="section" id="about">
-      <SectionHeading icon="01" title={profile.about.title} />
-      <div class="panel placeholder-copy">
-        Shared section scaffolding is in place for about, education, experience, skills, projects,
-        and contact.
-      </div>
-    </section>
+    <HeroSection hero={profile.hero} contact={profile.contact.details} />
+    <AboutSection about={profile.about} education={profile.education} />
+    <ExperienceSection experience={profile.experience} />
+    <SkillsSection skills={profile.skills} />
   </main>
 
   <footer class="site-footer">

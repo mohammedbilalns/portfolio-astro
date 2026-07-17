@@ -1,0 +1,99 @@
+---
+import SectionHeading from "./SectionHeading.astro";
+
+interface EducationItem {
+  degree: string;
+  institution: string;
+  duration: string;
+}
+
+interface Props {
+  about: {
+    title: string;
+    description: string;
+  };
+  education: {
+    title: string;
+    items: EducationItem[];
+  };
+}
+
+const { about, education } = Astro.props;
+---
+
+<section class="section" id="about">
+  <SectionHeading icon="01" title={about.title} />
+
+  <div class="about-grid">
+    <article class="panel prose-card">
+      <p>{about.description}</p>
+    </article>
+
+    <aside class="panel aside-card">
+      <h3>{education.title}</h3>
+      <div class="edu-list">
+        {education.items.map((item) => (
+          <div class="edu-item">
+            <strong>{item.degree}</strong>
+            <span>{item.institution}</span>
+            <span class="edu-item__duration">{item.duration}</span>
+          </div>
+        ))}
+      </div>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.9fr);
+    gap: 1.5rem;
+  }
+
+  .prose-card,
+  .aside-card {
+    padding: 1.6rem;
+  }
+
+  .prose-card p {
+    margin: 0;
+    color: #d0d8e3;
+    line-height: 1.9;
+    font-size: 1.02rem;
+  }
+
+  .aside-card h3 {
+    margin: 0 0 1rem;
+    font-size: 1.2rem;
+  }
+
+  .edu-list {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .edu-item {
+    display: grid;
+    gap: 0.25rem;
+    padding: 1rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .edu-item span {
+    color: var(--text-muted);
+  }
+
+  .edu-item__duration {
+    color: #8ebeff;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 820px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
