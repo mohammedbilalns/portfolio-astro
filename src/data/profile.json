@@ -30,7 +30,6 @@
   },
   "hero": {
     "name": "Mohammed Bilal N S",
-    "greeting": "Hey There,",
     "title": "Full-Stack Developer",
     "description": "Crafting scalable, secure, and high-performance applications.",
     "primaryButton": {
@@ -76,79 +75,39 @@
       }
     ]
   },
-  "skills": {
-    "title": "My Skills",
-    "subtitle": "A focused stack spanning product engineering, architecture, and deployment",
-    "categories": [
-      {
-        "name": "Languages",
-        "items": [
-          "JavaScript",
-          "TypeScript",
-          "Python",
-          "Go"
-        ]
-      },
-      {
-        "name": "Frontend",
-        "items": [
-          "React.js",
-          "Next.js",
-          "TanStack Start",
-          "Redux Toolkit",
-          "Zustand",
-          "TanStack Query",
-          "Tailwind CSS"
-        ]
-      },
-      {
-        "name": "Backend",
-        "items": [
-          "Node.js",
-          "Express.js",
-          "NestJS",
-          "RESTful APIs",
-          "WebSockets",
-          "Authentication & Authorization"
-        ]
-      },
-      {
-        "name": "Databases",
-        "items": [
-          "PostgreSQL",
-          "MongoDB",
-          "Redis"
-        ]
-      },
-      {
-        "name": "Cloud & DevOps",
-        "items": [
-          "Docker",
-          "AWS EC2",
-          "GitHub Actions",
-          "CI/CD",
-          "GNU/Linux"
-        ]
-      },
-      {
-        "name": "Architecture",
-        "items": [
-          "Clean Architecture",
-          "SOLID Principles",
-          "MVC",
-          "Repository Pattern"
-        ]
-      },
-      {
-        "name": "Tools & Integrations",
-        "items": [
-          "Git",
-          "GitHub",
-          "Stripe",
-          "PayPal",
-          "Razorpay"
-        ]
-      }
+  "techArsenal": {
+    "title": "Tech Arsenal",
+    "subtitle": "Tools, frameworks, and technologies I wield daily",
+    "items": [
+      { "name": "TypeScript", "icon": "skill-icons:typescript", "color": "text-blue-400" },
+      { "name": "JavaScript", "icon": "skill-icons:javascript", "color": "text-yellow-400" },
+      { "name": "Python", "icon": "skill-icons:python-light", "color": "text-blue-500" },
+      { "name": "Go", "icon": "skill-icons:golang", "color": "text-cyan-400" },
+      { "name": "Node.js", "icon": "skill-icons:nodejs-dark", "color": "text-green-400" },
+      { "name": "Express.js", "icon": "skill-icons:expressjs-dark", "color": "text-gray-400" },
+      { "name": "NestJS", "icon": "skill-icons:nestjs-dark", "color": "text-red-500" },
+      { "name": "MongoDB", "icon": "skill-icons:mongodb", "color": "text-green-400" },
+      { "name": "PostgreSQL", "icon": "skill-icons:postgresql-dark", "color": "text-blue-500" },
+      { "name": "Redis", "icon": "skill-icons:redis-dark", "color": "text-red-400" },
+      { "name": "Docker", "icon": "skill-icons:docker", "color": "text-blue-400" },
+      { "name": "GitHub Actions", "icon": "skill-icons:githubactions-dark", "color": "text-purple-500" },
+      { "name": "AWS EC2", "icon": "skill-icons:aws-dark", "color": "text-orange-500" },
+      { "name": "Git", "icon": "skill-icons:git", "color": "text-orange-400" },
+      { "name": "BullMQ", "icon": "carbon:message-queue", "color": "text-red-500" },
+      { "name": "GitHub", "icon": "skill-icons:github-dark", "color": "text-gray-300" },
+      { "name": "Linux", "icon": "skill-icons:linux-light", "color": "text-yellow-400" },
+      { "name": "React.js", "icon": "skill-icons:react-dark", "color": "text-cyan-400" },
+      { "name": "Next.js", "icon": "skill-icons:nextjs-dark", "color": "text-gray-300" },
+      { "name": "TanStack Start", "icon": "simple-icons:tanstack", "color": "text-red-400" },
+      { "name": "TanStack Query", "icon": "logos:react-query-icon", "color": "text-red-400" },
+      { "name": "Redux Toolkit", "icon": "skill-icons:redux", "color": "text-purple-400" },
+      { "name": "Zustand", "icon": "skill-icons:react-dark", "color": "text-orange-400" },
+      { "name": "Tailwind CSS", "icon": "skill-icons:tailwindcss-dark", "color": "text-cyan-400" },
+      { "name": "Fastify", "icon": "skill-icons:nodejs-dark", "color": "text-green-400" },
+      { "name": "Nginx", "icon": "simple-icons:nginx", "color": "text-green-400" },
+      { "name": "Socket.io", "icon": "tabler:brand-socket-io", "color": "text-black" },
+      { "name": "Grafana", "icon": "simple-icons:grafana", "color": "text-orange-400" },
+      { "name": "Loki", "icon": "skill-icons:prometheus", "color": "text-blue-400" }
     ]
   },
   "projects": {

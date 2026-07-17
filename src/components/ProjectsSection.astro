@@ -1,4 +1,5 @@
 ---
+import { Icon as AstroIcon } from "astro-icon/components";
 import Icon from "./Icon.astro";
 import SectionHeading from "./SectionHeading.astro";
 
@@ -26,24 +27,30 @@ const { projects } = Astro.props;
 const getTechIcon = (tech: string) => {
   const normalized = tech.toLowerCase();
 
-  if (normalized.includes("react")) return { name: "react", color: "var(--icon-react)", tone: "rgba(34, 211, 238, 0.14)" };
-  if (normalized.includes("typescript")) return { name: "typescript", color: "var(--icon-typescript)", tone: "rgba(96, 165, 250, 0.14)" };
-  if (normalized.includes("next")) return { name: "nextjs", color: "var(--icon-nextjs)", tone: "rgba(255, 255, 255, 0.1)" };
-  if (normalized.includes("node")) return { name: "nodejs", color: "var(--icon-nodejs)", tone: "rgba(132, 204, 22, 0.12)" };
-  if (normalized.includes("express")) return { name: "code", color: "var(--icon-express)", tone: "rgba(209, 213, 219, 0.1)" };
-  if (normalized.includes("nest")) return { name: "code", color: "var(--icon-nestjs)", tone: "rgba(239, 68, 68, 0.12)" };
-  if (normalized.includes("mongo")) return { name: "database", color: "var(--icon-mongodb)", tone: "rgba(34, 197, 94, 0.12)" };
-  if (normalized.includes("postgre")) return { name: "postgres", color: "var(--icon-postgres)", tone: "rgba(96, 165, 250, 0.12)" };
-  if (normalized.includes("redis")) return { name: "redis", color: "var(--icon-redis)", tone: "rgba(239, 68, 68, 0.12)" };
-  if (normalized.includes("docker")) return { name: "docker", color: "var(--icon-docker)", tone: "rgba(96, 165, 250, 0.14)" };
-  if (normalized.includes("tailwind")) return { name: "tailwind", color: "var(--icon-tailwind)", tone: "rgba(34, 211, 238, 0.14)" };
-  if (normalized.includes("aws")) return { name: "aws", color: "var(--icon-aws)", tone: "rgba(245, 158, 11, 0.12)" };
-  if (normalized.includes("paypal")) return { name: "paypal", color: "var(--icon-paypal)", tone: "rgba(96, 165, 250, 0.14)" };
-  if (normalized.includes("websocket") || normalized.includes("webrtc")) {
-    return { name: "message", color: "var(--icon-message)", tone: "rgba(34, 197, 94, 0.12)" };
-  }
+  if (normalized.includes("react")) return { name: "skill-icons:react-dark", tone: "rgba(34, 211, 238, 0.14)" };
+  if (normalized.includes("typescript")) return { name: "skill-icons:typescript", tone: "rgba(96, 165, 250, 0.14)" };
+  if (normalized.includes("next")) return { name: "skill-icons:nextjs-dark", tone: "rgba(255, 255, 255, 0.1)" };
+  if (normalized.includes("node")) return { name: "skill-icons:nodejs-dark", tone: "rgba(132, 204, 22, 0.12)" };
+  if (normalized.includes("express")) return { name: "skill-icons:expressjs-dark", tone: "rgba(209, 213, 219, 0.1)" };
+  if (normalized.includes("nest")) return { name: "skill-icons:nestjs-dark", tone: "rgba(239, 68, 68, 0.12)" };
+  if (normalized.includes("mongo")) return { name: "skill-icons:mongodb", tone: "rgba(34, 197, 94, 0.12)" };
+  if (normalized.includes("postgre")) return { name: "skill-icons:postgresql-dark", tone: "rgba(96, 165, 250, 0.12)" };
+  if (normalized.includes("redis")) return { name: "skill-icons:redis-dark", tone: "rgba(239, 68, 68, 0.12)" };
+  if (normalized.includes("docker")) return { name: "skill-icons:docker", tone: "rgba(96, 165, 250, 0.14)" };
+  if (normalized.includes("tailwind")) return { name: "skill-icons:tailwindcss-dark", tone: "rgba(34, 211, 238, 0.14)" };
+  if (normalized.includes("aws")) return { name: "skill-icons:aws-dark", tone: "rgba(245, 158, 11, 0.12)" };
+  if (normalized.includes("paypal")) return { name: "logos:paypal", tone: "rgba(96, 165, 250, 0.14)" };
+  if (normalized.includes("bullmq")) return { name: "carbon:message-queue", tone: "rgba(251, 191, 36, 0.12)" };
+  if (normalized.includes("websocket")) return { name: "tabler:brand-socket-io", tone: "rgba(34, 197, 94, 0.12)" };
+  if (normalized.includes("webrtc")) return { name: "mdi:video-wireless-outline", tone: "rgba(34, 197, 94, 0.12)" };
+  if (normalized.includes("drizzle")) return { name: "simple-icons:drizzle", tone: "rgba(196, 181, 253, 0.12)" };
+  if (normalized.includes("ejs")) return { name: "simple-icons:ejs", tone: "rgba(251, 191, 36, 0.12)" };
+  if (normalized.includes("mvc")) return { name: "carbon:workflow-automation", tone: "rgba(147, 197, 253, 0.12)" };
+  if (normalized.includes("tesseract")) return { name: "mdi:text-recognition", tone: "rgba(244, 114, 182, 0.12)" };
+  if (normalized.includes("image processing")) return { name: "ph:image-square-duotone", tone: "rgba(168, 85, 247, 0.12)" };
+  if (normalized.includes("rest")) return { name: "ph:brackets-curly-duotone", tone: "rgba(56, 189, 248, 0.12)" };
 
-  return { name: "generic-tech", color: "var(--icon-generic)", tone: "rgba(147, 197, 253, 0.12)" };
+  return { name: "solar:stars-bold-duotone", tone: "rgba(147, 197, 253, 0.12)" };
 };
 ---
 
@@ -65,11 +72,20 @@ const getTechIcon = (tech: string) => {
           <div class="project-card__header">
             <div>
               <p class="project-card__category">{project.category}</p>
-              <h3>{project.name}</h3>
+              <div class="project-card__title-row">
+                <h3>{project.name}</h3>
+                <div class="project-card__tech-icons">
+                  {project.technologies.map((tech) => {
+                    const icon = getTechIcon(tech);
+                    return (
+                      <AstroIcon name={icon.name} class="project-card__tech-icon" title={tech} />
+                    );
+                  })}
+                </div>
+              </div>
             </div>
             <div class="project-card__actions">
               <a href={project.liveDemo} target="_blank" rel="noreferrer">
-                <Icon name="external" class="project-card__action-icon" />
                 Live Demo
               </a>
               <a href={project.sourceCode} target="_blank" rel="noreferrer">
@@ -80,20 +96,6 @@ const getTechIcon = (tech: string) => {
           </div>
 
           <p class="project-card__description">{project.description}</p>
-
-          <div class="project-card__tech-grid">
-            {project.technologies.map((tech) => {
-              const icon = getTechIcon(tech);
-              return (
-                <div class="project-card__tech-tile" style={`--tech-color: ${icon.color}; --tech-tone: ${icon.tone};`}>
-                  <span class="project-card__tech-icon-wrap">
-                    <Icon name={icon.name} class="project-card__tech-icon" />
-                  </span>
-                  <span class="project-card__tech-label">{tech}</span>
-                </div>
-              );
-            })}
-          </div>
 
           <ul class="project-card__features">
             {project.features.map((feature) => (
@@ -205,47 +207,24 @@ const getTechIcon = (tech: string) => {
     line-height: 1.75;
   }
 
-  .project-card__tech-grid {
+  .project-card__title-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
-    margin: 1rem 0 1.1rem;
-  }
-
-  .project-card__tech-tile {
-    width: 6rem;
-    min-height: 6.1rem;
-    padding: 0.75rem 0.55rem 0.65rem;
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 0.55rem;
-    border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0.01)),
-      var(--tech-tone);
-    text-align: center;
+    gap: 0.75rem;
+    margin-top: 0.25rem;
   }
 
-  .project-card__tech-icon-wrap {
-    width: 2.6rem;
-    height: 2.6rem;
-    display: grid;
-    place-items: center;
-    color: var(--tech-color);
+  .project-card__tech-icons {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
   }
 
   .project-card__tech-icon {
-    width: 2rem;
-    height: 2rem;
-  }
-
-  .project-card__tech-label {
-    color: #dce7f3;
-    font-size: 0.78rem;
-    line-height: 1.2;
+    width: 1.45rem;
+    height: 1.45rem;
+    object-fit: contain;
   }
 
   .project-card__features {
