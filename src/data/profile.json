@@ -178,8 +178,8 @@
           "Clean Architecture backend with modular services",
           "Scheduling and notifications with BullMQ and Redis"
         ],
-        "liveDemo": "",
-        "sourceCode": ""
+        "liveDemo": "https://example.com/projects/upstride",
+        "sourceCode": "https://github.com/mohammedbilalns/upstride"
       },
       {
         "id": "techhive",
@@ -201,8 +201,8 @@
           "Secure Razorpay payment integration",
           "Scalable MVC backend and order management"
         ],
-        "liveDemo": "",
-        "sourceCode": ""
+        "liveDemo": "https://example.com/projects/techhive",
+        "sourceCode": "https://github.com/mohammedbilalns/techhive"
       },
       {
         "id": "lumina",
@@ -222,8 +222,8 @@
           "Relational data model with PostgreSQL",
           "Modular backend architecture for maintainability"
         ],
-        "liveDemo": "",
-        "sourceCode": ""
+        "liveDemo": "https://example.com/projects/lumina",
+        "sourceCode": "https://github.com/mohammedbilalns/lumina"
       },
       {
         "id": "aadhaar-ocr-extractor",
@@ -243,8 +243,8 @@
           "Validation and visualization workflows",
           "Improved accuracy and usability of extracted data"
         ],
-        "liveDemo": "",
-        "sourceCode": ""
+        "liveDemo": "https://example.com/projects/aadhaar-ocr-extractor",
+        "sourceCode": "https://github.com/mohammedbilalns/aadhaar-ocr-extractor"
       },
       {
         "id": "pixtide",
@@ -264,8 +264,8 @@
           "Authentication and search filters",
           "Digital asset management"
         ],
-        "liveDemo": "",
-        "sourceCode": ""
+        "liveDemo": "https://example.com/projects/pixtide",
+        "sourceCode": "https://github.com/mohammedbilalns/pixtide"
       },
       {
         "id": "shrinklink",
@@ -284,8 +284,8 @@
           "Custom short URLs",
           "Link management dashboard"
         ],
-        "liveDemo": "",
-        "sourceCode": ""
+        "liveDemo": "https://example.com/projects/shrinklink",
+        "sourceCode": "https://github.com/mohammedbilalns/shrinklink"
       }
     ]
   },

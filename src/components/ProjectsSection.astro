@@ -1,4 +1,5 @@
 ---
+import Icon from "./Icon.astro";
 import SectionHeading from "./SectionHeading.astro";
 
 interface ProjectItem {
@@ -21,6 +22,29 @@ interface Props {
 }
 
 const { projects } = Astro.props;
+
+const getTechIcon = (tech: string) => {
+  const normalized = tech.toLowerCase();
+
+  if (normalized.includes("react")) return { name: "react", color: "var(--icon-react)" };
+  if (normalized.includes("typescript")) return { name: "typescript", color: "var(--icon-typescript)" };
+  if (normalized.includes("next")) return { name: "nextjs", color: "var(--icon-nextjs)" };
+  if (normalized.includes("node")) return { name: "nodejs", color: "var(--icon-nodejs)" };
+  if (normalized.includes("express")) return { name: "code", color: "var(--icon-express)" };
+  if (normalized.includes("nest")) return { name: "code", color: "var(--icon-nestjs)" };
+  if (normalized.includes("mongo")) return { name: "database", color: "var(--icon-mongodb)" };
+  if (normalized.includes("postgre")) return { name: "postgres", color: "var(--icon-postgres)" };
+  if (normalized.includes("redis")) return { name: "redis", color: "var(--icon-redis)" };
+  if (normalized.includes("docker")) return { name: "docker", color: "var(--icon-docker)" };
+  if (normalized.includes("tailwind")) return { name: "tailwind", color: "var(--icon-tailwind)" };
+  if (normalized.includes("aws")) return { name: "aws", color: "var(--icon-aws)" };
+  if (normalized.includes("paypal")) return { name: "paypal", color: "var(--icon-paypal)" };
+  if (normalized.includes("websocket") || normalized.includes("webrtc")) {
+    return { name: "message", color: "var(--icon-message)" };
+  }
+
+  return { name: "generic-tech", color: "var(--icon-generic)" };
+};
 ---
 
 <section class="section" id="projects">
@@ -44,21 +68,29 @@ const { projects } = Astro.props;
               <h3>{project.name}</h3>
             </div>
             <div class="project-card__actions">
-              {project.liveDemo && (
-                <a href={project.liveDemo} target="_blank" rel="noreferrer">Live Demo</a>
-              )}
-              {project.sourceCode && (
-                <a href={project.sourceCode} target="_blank" rel="noreferrer">Source</a>
-              )}
+              <a href={project.liveDemo} target="_blank" rel="noreferrer">
+                <Icon name="external" class="project-card__action-icon" />
+                Live Demo
+              </a>
+              <a href={project.sourceCode} target="_blank" rel="noreferrer">
+                <Icon name="github" class="project-card__action-icon" />
+                GitHub
+              </a>
             </div>
           </div>
 
           <p class="project-card__description">{project.description}</p>
 
           <div class="project-card__pills">
-            {project.technologies.map((tech) => (
-              <span>{tech}</span>
-            ))}
+            {project.technologies.map((tech) => {
+              const icon = getTechIcon(tech);
+              return (
+                <span>
+                  <Icon name={icon.name} class="project-card__pill-icon" style={`color: ${icon.color};`} />
+                  {tech}
+                </span>
+              );
+            })}
           </div>
 
           <ul class="project-card__features">
@@ -84,12 +116,12 @@ const { projects } = Astro.props;
     border-radius: var(--radius);
     overflow: hidden;
     border: 1px solid rgba(96, 165, 250, 0.2);
-    background: linear-gradient(180deg, rgba(12, 18, 28, 0.5), rgba(12, 12, 12, 0.88));
+    background: #050505;
   }
 
   .project-card__media {
     min-height: 100%;
-    background: rgba(3, 7, 18, 0.95);
+    background: #020202;
   }
 
   .project-card__placeholder {
@@ -98,8 +130,8 @@ const { projects } = Astro.props;
     display: grid;
     place-items: center;
     background:
-      radial-gradient(circle at top left, rgba(96, 165, 250, 0.32), transparent 38%),
-      linear-gradient(145deg, rgba(9, 17, 31, 1), rgba(3, 7, 18, 1));
+      radial-gradient(circle at top left, rgba(96, 165, 250, 0.16), transparent 36%),
+      linear-gradient(145deg, rgba(8, 8, 8, 1), rgba(2, 2, 2, 1));
   }
 
   .project-card__placeholder span {
@@ -150,8 +182,21 @@ const { projects } = Astro.props;
   }
 
   .project-card__actions a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
     color: #9bc7ff;
     font-size: 0.92rem;
+    padding: 0.55rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid rgba(96, 165, 250, 0.18);
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .project-card__action-icon,
+  .project-card__pill-icon {
+    width: 1rem;
+    height: 1rem;
   }
 
   .project-card__description {
@@ -167,10 +212,13 @@ const { projects } = Astro.props;
   }
 
   .project-card__pills span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
     padding: 0.45rem 0.72rem;
     border-radius: 999px;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.025);
     color: #dce7f3;
     font-size: 0.88rem;
   }

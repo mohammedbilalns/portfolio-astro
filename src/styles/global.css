@@ -1,14 +1,29 @@
 :root {
-  --bg: #040404;
-  --bg-elevated: rgba(14, 14, 14, 0.9);
-  --panel: rgba(18, 18, 18, 0.88);
-  --panel-strong: rgba(26, 26, 26, 0.95);
+  --bg: #000000;
+  --bg-elevated: rgba(6, 6, 6, 0.94);
+  --panel: rgba(10, 10, 10, 0.92);
+  --panel-strong: rgba(14, 14, 14, 0.98);
   --border: rgba(255, 255, 255, 0.1);
   --border-strong: rgba(96, 165, 250, 0.35);
   --text: #f5f7fa;
   --text-muted: #98a2b3;
   --accent: #60a5fa;
   --accent-soft: rgba(96, 165, 250, 0.12);
+  --icon-aws: #f59e0b;
+  --icon-docker: #60a5fa;
+  --icon-express: #d1d5db;
+  --icon-generic: #93c5fd;
+  --icon-message: #22c55e;
+  --icon-mongodb: #22c55e;
+  --icon-nestjs: #ef4444;
+  --icon-nextjs: #f8fafc;
+  --icon-nodejs: #84cc16;
+  --icon-paypal: #60a5fa;
+  --icon-postgres: #60a5fa;
+  --icon-react: #22d3ee;
+  --icon-redis: #ef4444;
+  --icon-tailwind: #22d3ee;
+  --icon-typescript: #60a5fa;
   --shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
   --radius: 22px;
   --max-width: 1024px;
@@ -27,9 +42,7 @@ body {
   margin: 0;
   min-height: 100vh;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background:
-    radial-gradient(circle at top, rgba(37, 99, 235, 0.18), transparent 34%),
-    linear-gradient(180deg, #060606 0%, #040404 100%);
+  background: #000;
   color: var(--text);
 }
 
@@ -52,7 +65,7 @@ img {
   top: 0;
   z-index: 10;
   backdrop-filter: blur(18px);
-  background: rgba(0, 0, 0, 0.48);
+  background: rgba(0, 0, 0, 0.72);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
