@@ -1,0 +1,336 @@
+{
+  "site": {
+    "title": "Mohammed Bilal N S",
+    "logo": "MB",
+    "navigation": [
+      {
+        "label": "Home",
+        "href": "#home"
+      },
+      {
+        "label": "About",
+        "href": "#about"
+      },
+      {
+        "label": "Skills",
+        "href": "#skills"
+      },
+      {
+        "label": "Projects",
+        "href": "#projects"
+      },
+      {
+        "label": "Contact",
+        "href": "#contact"
+      }
+    ],
+    "footer": {
+      "copyright": "© 2026 Mohammed Bilal N S. Built with React, TypeScript, and TailwindCSS."
+    }
+  },
+  "hero": {
+    "name": "Mohammed Bilal N S",
+    "greeting": "Hey There,",
+    "title": "Full-Stack Developer",
+    "description": "Crafting scalable, secure, and high-performance applications.",
+    "primaryButton": {
+      "text": "View My Work",
+      "href": "#projects"
+    },
+    "secondaryButton": {
+      "text": "Get in Touch",
+      "href": "#contact"
+    }
+  },
+  "about": {
+    "title": "About Me",
+    "description": "I'm a Full-Stack Software Developer passionate about building scalable, secure, and modern web applications. I enjoy solving complex problems, writing clean and maintainable code, and continuously learning new technologies to create better software solutions. I believe in designing systems that are not only functional but also efficient, reliable, and easy to maintain, while constantly improving my skills through hands-on development and exploration."
+  },
+  "education": {
+    "title": "Educational Background",
+    "items": [
+      {
+        "degree": "MSc Mathematics",
+        "institution": "Kerala University",
+        "duration": "2021–2023"
+      },
+      {
+        "degree": "BSc Mathematics",
+        "institution": "Kerala University",
+        "duration": "2018–2021"
+      }
+    ]
+  },
+  "experience": {
+    "title": "Experience",
+    "items": [
+      {
+        "position": "Freelance Academic Services",
+        "company": "Independent",
+        "duration": "2024 – 2025",
+        "responsibilities": [
+          "Provided LaTeX typesetting services for academic documents, reports, and mathematical content.",
+          "Conducted one-on-one mathematics tutoring for undergraduate and higher secondary students, assisting with problem solving and examination preparation.",
+          "Managed independent client engagements while delivering accurate, well-structured educational and technical materials."
+        ]
+      }
+    ]
+  },
+  "skills": {
+    "title": "My Skills",
+    "subtitle": "A focused stack spanning product engineering, architecture, and deployment",
+    "categories": [
+      {
+        "name": "Languages",
+        "items": [
+          "JavaScript",
+          "TypeScript",
+          "Python",
+          "Go"
+        ]
+      },
+      {
+        "name": "Frontend",
+        "items": [
+          "React.js",
+          "Next.js",
+          "TanStack Start",
+          "Redux Toolkit",
+          "Zustand",
+          "TanStack Query",
+          "Tailwind CSS"
+        ]
+      },
+      {
+        "name": "Backend",
+        "items": [
+          "Node.js",
+          "Express.js",
+          "NestJS",
+          "RESTful APIs",
+          "WebSockets",
+          "Authentication & Authorization"
+        ]
+      },
+      {
+        "name": "Databases",
+        "items": [
+          "PostgreSQL",
+          "MongoDB",
+          "Redis"
+        ]
+      },
+      {
+        "name": "Cloud & DevOps",
+        "items": [
+          "Docker",
+          "AWS EC2",
+          "GitHub Actions",
+          "CI/CD",
+          "GNU/Linux"
+        ]
+      },
+      {
+        "name": "Architecture",
+        "items": [
+          "Clean Architecture",
+          "SOLID Principles",
+          "MVC",
+          "Repository Pattern"
+        ]
+      },
+      {
+        "name": "Tools & Integrations",
+        "items": [
+          "Git",
+          "GitHub",
+          "Stripe",
+          "PayPal",
+          "Razorpay"
+        ]
+      }
+    ]
+  },
+  "projects": {
+    "title": "My Projects",
+    "subtitle": "Explore some of the projects I've worked on across different technologies and domains.",
+    "items": [
+      {
+        "id": "upstride",
+        "name": "Upstride",
+        "category": "Expert Connect Platform",
+        "description": "Full-stack consultation platform connecting users with verified professionals through real-time communication, knowledge sharing, and scheduled sessions.",
+        "technologies": [
+          "React",
+          "TypeScript",
+          "Node.js",
+          "MongoDB",
+          "Redis",
+          "WebSocket",
+          "WebRTC",
+          "BullMQ",
+          "Docker",
+          "AWS EC2"
+        ],
+        "features": [
+          "Real-time messaging and participant management",
+          "Audio/video consultation sessions with WebRTC",
+          "Clean Architecture backend with modular services",
+          "Scheduling and notifications with BullMQ and Redis"
+        ],
+        "liveDemo": "",
+        "sourceCode": ""
+      },
+      {
+        "id": "techhive",
+        "name": "TechHive",
+        "category": "PC Accessories E-commerce Platform",
+        "description": "Full-stack e-commerce platform for browsing, purchasing, and managing PC accessories with search, cart, wishlist, checkout, and order workflows.",
+        "technologies": [
+          "Express.js",
+          "MongoDB",
+          "EJS",
+          "Tailwind CSS",
+          "Razorpay",
+          "MVC",
+          "AWS EC2"
+        ],
+        "features": [
+          "Product discovery, search, and filtering",
+          "Shopping cart, wishlist, and checkout",
+          "Secure Razorpay payment integration",
+          "Scalable MVC backend and order management"
+        ],
+        "liveDemo": "",
+        "sourceCode": ""
+      },
+      {
+        "id": "lumina",
+        "name": "Lumina",
+        "category": "Article Feed Platform",
+        "description": "Content publishing and discovery platform for creating articles, building personalized feeds, and consuming curated content.",
+        "technologies": [
+          "NestJS",
+          "PostgreSQL",
+          "TanStack Start",
+          "TypeScript",
+          "REST APIs"
+        ],
+        "features": [
+          "Personalized article feeds and discovery",
+          "Article creation and content management",
+          "Relational data model with PostgreSQL",
+          "Modular backend architecture for maintainability"
+        ],
+        "liveDemo": "",
+        "sourceCode": ""
+      },
+      {
+        "id": "aadhaar-ocr-extractor",
+        "name": "Aadhaar OCR Extractor",
+        "category": "Document Processing Tool",
+        "description": "OCR-based application that automates Aadhaar data extraction from uploaded documents and organizes the output into structured fields.",
+        "technologies": [
+          "Node.js",
+          "React",
+          "Tesseract OCR",
+          "Image Processing",
+          "TypeScript"
+        ],
+        "features": [
+          "Automated text recognition from uploaded IDs",
+          "Structured field extraction pipeline",
+          "Validation and visualization workflows",
+          "Improved accuracy and usability of extracted data"
+        ],
+        "liveDemo": "",
+        "sourceCode": ""
+      },
+      {
+        "id": "pixtide",
+        "name": "Pixtide",
+        "category": "Asset Sharing Platform",
+        "description": "Modern platform for sharing and purchasing digital assets with secure transactions and a streamlined user experience.",
+        "technologies": [
+          "Next.js",
+          "PostgreSQL",
+          "Drizzle ORM",
+          "PayPal",
+          "TypeScript"
+        ],
+        "features": [
+          "Asset sharing and purchasing workflows",
+          "PayPal payment integration",
+          "Authentication and search filters",
+          "Digital asset management"
+        ],
+        "liveDemo": "",
+        "sourceCode": ""
+      },
+      {
+        "id": "shrinklink",
+        "name": "ShrinkLink",
+        "category": "Link Management Tool",
+        "description": "URL shortening service with click tracking, analytics, and management tools for monitoring link performance.",
+        "technologies": [
+          "React",
+          "Express.js",
+          "MongoDB",
+          "Redis"
+        ],
+        "features": [
+          "URL shortening service",
+          "Click tracking and analytics",
+          "Custom short URLs",
+          "Link management dashboard"
+        ],
+        "liveDemo": "",
+        "sourceCode": ""
+      }
+    ]
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "Ready to start your next project? Let's discuss how we can work together to bring your ideas to life.",
+    "description": "I'm always interested in new opportunities and exciting projects. Whether you're looking for a full-stack developer, have a project in mind, or just want to say hello, feel free to reach out!",
+    "details": {
+      "email": "bilalnsmuhammed@gmail.com",
+      "phone": "+91 6282535161",
+      "github": "https://github.com/mohammedbilalns",
+      "linkedin": "https://linkedin.com/in/mohammed-bilal-ns",
+      "leetcode": "https://leetcode.com/mohammedbilal",
+      "location": "Kerala, India",
+      "availability": "Currently accepting new projects and opportunities"
+    },
+    "form": {
+      "title": "Send Me a Message",
+      "fields": [
+        {
+          "name": "fullName",
+          "label": "Full Name",
+          "placeholder": "Your name",
+          "required": true
+        },
+        {
+          "name": "email",
+          "label": "Email Address",
+          "placeholder": "your.email@example.com",
+          "required": true
+        },
+        {
+          "name": "subject",
+          "label": "Subject",
+          "placeholder": "What's this about?",
+          "required": false
+        },
+        {
+          "name": "message",
+          "label": "Message",
+          "placeholder": "Tell me about your project or just say hello...",
+          "required": true
+        }
+      ],
+      "submitText": "Send Message"
+    }
+  }
+}
