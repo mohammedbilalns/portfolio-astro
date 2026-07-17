@@ -26,24 +26,24 @@ const { projects } = Astro.props;
 const getTechIcon = (tech: string) => {
   const normalized = tech.toLowerCase();
 
-  if (normalized.includes("react")) return { name: "react", color: "var(--icon-react)" };
-  if (normalized.includes("typescript")) return { name: "typescript", color: "var(--icon-typescript)" };
-  if (normalized.includes("next")) return { name: "nextjs", color: "var(--icon-nextjs)" };
-  if (normalized.includes("node")) return { name: "nodejs", color: "var(--icon-nodejs)" };
-  if (normalized.includes("express")) return { name: "code", color: "var(--icon-express)" };
-  if (normalized.includes("nest")) return { name: "code", color: "var(--icon-nestjs)" };
-  if (normalized.includes("mongo")) return { name: "database", color: "var(--icon-mongodb)" };
-  if (normalized.includes("postgre")) return { name: "postgres", color: "var(--icon-postgres)" };
-  if (normalized.includes("redis")) return { name: "redis", color: "var(--icon-redis)" };
-  if (normalized.includes("docker")) return { name: "docker", color: "var(--icon-docker)" };
-  if (normalized.includes("tailwind")) return { name: "tailwind", color: "var(--icon-tailwind)" };
-  if (normalized.includes("aws")) return { name: "aws", color: "var(--icon-aws)" };
-  if (normalized.includes("paypal")) return { name: "paypal", color: "var(--icon-paypal)" };
+  if (normalized.includes("react")) return { name: "react", color: "var(--icon-react)", tone: "rgba(34, 211, 238, 0.14)" };
+  if (normalized.includes("typescript")) return { name: "typescript", color: "var(--icon-typescript)", tone: "rgba(96, 165, 250, 0.14)" };
+  if (normalized.includes("next")) return { name: "nextjs", color: "var(--icon-nextjs)", tone: "rgba(255, 255, 255, 0.1)" };
+  if (normalized.includes("node")) return { name: "nodejs", color: "var(--icon-nodejs)", tone: "rgba(132, 204, 22, 0.12)" };
+  if (normalized.includes("express")) return { name: "code", color: "var(--icon-express)", tone: "rgba(209, 213, 219, 0.1)" };
+  if (normalized.includes("nest")) return { name: "code", color: "var(--icon-nestjs)", tone: "rgba(239, 68, 68, 0.12)" };
+  if (normalized.includes("mongo")) return { name: "database", color: "var(--icon-mongodb)", tone: "rgba(34, 197, 94, 0.12)" };
+  if (normalized.includes("postgre")) return { name: "postgres", color: "var(--icon-postgres)", tone: "rgba(96, 165, 250, 0.12)" };
+  if (normalized.includes("redis")) return { name: "redis", color: "var(--icon-redis)", tone: "rgba(239, 68, 68, 0.12)" };
+  if (normalized.includes("docker")) return { name: "docker", color: "var(--icon-docker)", tone: "rgba(96, 165, 250, 0.14)" };
+  if (normalized.includes("tailwind")) return { name: "tailwind", color: "var(--icon-tailwind)", tone: "rgba(34, 211, 238, 0.14)" };
+  if (normalized.includes("aws")) return { name: "aws", color: "var(--icon-aws)", tone: "rgba(245, 158, 11, 0.12)" };
+  if (normalized.includes("paypal")) return { name: "paypal", color: "var(--icon-paypal)", tone: "rgba(96, 165, 250, 0.14)" };
   if (normalized.includes("websocket") || normalized.includes("webrtc")) {
-    return { name: "message", color: "var(--icon-message)" };
+    return { name: "message", color: "var(--icon-message)", tone: "rgba(34, 197, 94, 0.12)" };
   }
 
-  return { name: "generic-tech", color: "var(--icon-generic)" };
+  return { name: "generic-tech", color: "var(--icon-generic)", tone: "rgba(147, 197, 253, 0.12)" };
 };
 ---
 
@@ -81,14 +81,16 @@ const getTechIcon = (tech: string) => {
 
           <p class="project-card__description">{project.description}</p>
 
-          <div class="project-card__pills">
+          <div class="project-card__tech-grid">
             {project.technologies.map((tech) => {
               const icon = getTechIcon(tech);
               return (
-                <span>
-                  <Icon name={icon.name} class="project-card__pill-icon" style={`color: ${icon.color};`} />
-                  {tech}
-                </span>
+                <div class="project-card__tech-tile" style={`--tech-color: ${icon.color}; --tech-tone: ${icon.tone};`}>
+                  <span class="project-card__tech-icon-wrap">
+                    <Icon name={icon.name} class="project-card__tech-icon" />
+                  </span>
+                  <span class="project-card__tech-label">{tech}</span>
+                </div>
               );
             })}
           </div>
@@ -193,8 +195,7 @@ const getTechIcon = (tech: string) => {
     background: rgba(255, 255, 255, 0.02);
   }
 
-  .project-card__action-icon,
-  .project-card__pill-icon {
+  .project-card__action-icon {
     width: 1rem;
     height: 1rem;
   }
@@ -204,23 +205,47 @@ const getTechIcon = (tech: string) => {
     line-height: 1.75;
   }
 
-  .project-card__pills {
+  .project-card__tech-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.65rem;
+    gap: 0.75rem;
     margin: 1rem 0 1.1rem;
   }
 
-  .project-card__pills span {
-    display: inline-flex;
+  .project-card__tech-tile {
+    width: 6rem;
+    min-height: 6.1rem;
+    padding: 0.75rem 0.55rem 0.65rem;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 0.45rem;
-    padding: 0.45rem 0.72rem;
+    justify-content: center;
+    gap: 0.55rem;
     border-radius: 999px;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    background: rgba(255, 255, 255, 0.025);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0.01)),
+      var(--tech-tone);
+    text-align: center;
+  }
+
+  .project-card__tech-icon-wrap {
+    width: 2.6rem;
+    height: 2.6rem;
+    display: grid;
+    place-items: center;
+    color: var(--tech-color);
+  }
+
+  .project-card__tech-icon {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .project-card__tech-label {
     color: #dce7f3;
-    font-size: 0.88rem;
+    font-size: 0.78rem;
+    line-height: 1.2;
   }
 
   .project-card__features {
