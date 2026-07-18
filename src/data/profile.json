@@ -137,8 +137,9 @@
           "Clean Architecture backend with modular services",
           "Scheduling and notifications with BullMQ and Redis"
         ],
-        "liveDemo": "https://example.com/projects/upstride",
-        "sourceCode": "https://github.com/mohammedbilalns/upstride"
+        "liveDemo": "https://upstride.bilalnsmuhammed.in",
+        "sourceCode": "https://github.com/mohammedbilalns/upstride-api",
+        "image": "/upstride.png"
       },
       {
         "id": "techhive",
@@ -160,8 +161,9 @@
           "Secure Razorpay payment integration",
           "Scalable MVC backend and order management"
         ],
-        "liveDemo": "https://example.com/projects/techhive",
-        "sourceCode": "https://github.com/mohammedbilalns/techhive"
+        "liveDemo": "https://techhive.bilalnsmuhammed.in",
+        "sourceCode": "https://github.com/mohammedbilalns/techhive",
+        "image": "/techhive.png"
       },
       {
         "id": "lumina",
@@ -181,9 +183,10 @@
           "Relational data model with PostgreSQL",
           "Modular backend architecture for maintainability"
         ],
-        "liveDemo": "https://example.com/projects/lumina",
-        "sourceCode": "https://github.com/mohammedbilalns/lumina"
-      },
+        "liveDemo": "https://lumina.bilalnsmuhammed.in",
+"sourceCode": "https://github.com/mohammedbilalns/lumina",
+         "image": "/lumina.png"
+       },
       {
         "id": "aadhaar-ocr-extractor",
         "name": "Aadhaar OCR Extractor",
@@ -202,8 +205,9 @@
           "Validation and visualization workflows",
           "Improved accuracy and usability of extracted data"
         ],
-        "liveDemo": "https://example.com/projects/aadhaar-ocr-extractor",
-        "sourceCode": "https://github.com/mohammedbilalns/aadhaar-ocr-extractor"
+        "image": "/adhaar-ocr.png",
+        "liveDemo": "https://adhaar-ocr.bilalnsmuhammed.in/",
+        "sourceCode": "https://github.com/mohammedbilalns/adhaar-ocr"
       },
       {
         "id": "pixtide",
@@ -223,7 +227,8 @@
           "Authentication and search filters",
           "Digital asset management"
         ],
-        "liveDemo": "https://example.com/projects/pixtide",
+        "image": "/pixtide.png",
+        "liveDemo": "https://pixtide.bilalnsmuhammed.in",
         "sourceCode": "https://github.com/mohammedbilalns/pixtide"
       },
       {
@@ -243,7 +248,8 @@
           "Custom short URLs",
           "Link management dashboard"
         ],
-        "liveDemo": "https://example.com/projects/shrinklink",
+        "image": "/shrinklinkg.png",
+        "liveDemo": "https://shrinklink.bilalnsmuhammed.in",
         "sourceCode": "https://github.com/mohammedbilalns/shrinklink"
       }
     ]
