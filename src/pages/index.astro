@@ -15,8 +15,8 @@ import profile from "../data/profile.json";
   logo={profile.site.logo}
 >
   <main class="page-main">
-    <HeroSection hero={profile.hero} contact={profile.contact.details} />
-    <AboutSection about={profile.about} education={profile.education} />
+    <HeroSection hero={profile.hero} about={profile.about} contact={profile.contact.details} />
+    <AboutSection education={profile.education} />
     <ExperienceSection experience={profile.experience} />
     <SkillsSection techArsenal={profile.techArsenal} />
     <ProjectsSection projects={profile.projects} />

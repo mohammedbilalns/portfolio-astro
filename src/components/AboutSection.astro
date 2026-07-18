@@ -8,42 +8,32 @@ interface EducationItem {
 }
 
 interface Props {
-  about: {
-    title: string;
-    description: string;
-  };
   education: {
     title: string;
     items: EducationItem[];
   };
 }
 
-const { about, education } = Astro.props;
+const { education } = Astro.props;
 ---
 
 <section class="section" id="about">
   <div class="reveal reveal--up">
-    <SectionHeading icon="user" title={about.title} />
+    <SectionHeading icon="graduation-cap" title={education.title} />
   </div>
 
-  <div class="about-grid">
-    <article class="panel prose-card reveal reveal--up" style="--reveal-delay: 120ms;">
-      <p>{about.description}</p>
-    </article>
-
-    <aside class="panel aside-card reveal reveal--up" style="--reveal-delay: 180ms;">
-      <h3>{education.title}</h3>
-      <div class="edu-list">
-        {education.items.map((item) => (
-          <div class="edu-item">
-            <strong>{item.degree}</strong>
-            <span>{item.institution}</span>
-            <span class="edu-item__duration">{item.duration}</span>
-          </div>
-        ))}
-      </div>
-    </aside>
-  </div>
+  <aside class="panel aside-card reveal reveal--up" style="--reveal-delay: 120ms;">
+    <h3>{education.title}</h3>
+    <div class="edu-list">
+      {education.items.map((item) => (
+        <div class="edu-item">
+          <strong>{item.degree}</strong>
+          <span>{item.institution}</span>
+          <span class="edu-item__duration">{item.duration}</span>
+        </div>
+      ))}
+    </div>
+  </aside>
 </section>
 
 <style>
