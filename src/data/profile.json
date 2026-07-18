@@ -139,7 +139,7 @@
         ],
         "liveDemo": "https://upstride.bilalnsmuhammed.in",
         "sourceCode": "https://github.com/mohammedbilalns/upstride-api",
-        "image": "/upstride.png"
+        "image": "upstride.png"
       },
       {
         "id": "techhive",
@@ -163,7 +163,7 @@
         ],
         "liveDemo": "https://techhive.bilalnsmuhammed.in",
         "sourceCode": "https://github.com/mohammedbilalns/techhive",
-        "image": "/techhive.png"
+        "image": "techhive.png"
       },
       {
         "id": "cinemind",
@@ -185,7 +185,7 @@
         ],
         "liveDemo": "https://cinemind.bilalnsmuhammed.in",
         "sourceCode": "https://github.com/mohammedbilalns/cinemind",
-        "image": "/cinemind.png"
+        "image": "cinemind.png"
       },
       {
         "id": "lumina",
@@ -207,7 +207,7 @@
         ],
         "liveDemo": "https://lumina.bilalnsmuhammed.in",
 "sourceCode": "https://github.com/mohammedbilalns/lumina",
-         "image": "/lumina.png"
+         "image": "lumina.png"
        },
       {
         "id": "aadhaar-ocr-extractor",
@@ -227,7 +227,7 @@
           "Validation and visualization workflows",
           "Improved accuracy and usability of extracted data"
         ],
-        "image": "/adhaar-ocr.png",
+        "image": "adhaar-ocr.png",
         "liveDemo": "https://adhaar-ocr.bilalnsmuhammed.in/",
         "sourceCode": "https://github.com/mohammedbilalns/adhaar-ocr"
       },
@@ -249,7 +249,7 @@
           "Authentication and search filters",
           "Digital asset management"
         ],
-        "image": "/pixtide.png",
+        "image": "pixtide.png",
         "liveDemo": "https://pixtide.bilalnsmuhammed.in",
         "sourceCode": "https://github.com/mohammedbilalns/pixtide"
       },
@@ -270,7 +270,7 @@
           "Custom short URLs",
           "Link management dashboard"
         ],
-        "image": "/shrinklinkg.png",
+        "image": "shrinklinkg.png",
         "liveDemo": "https://shrinklink.bilalnsmuhammed.in",
         "sourceCode": "https://github.com/mohammedbilalns/shrinklink"
       }

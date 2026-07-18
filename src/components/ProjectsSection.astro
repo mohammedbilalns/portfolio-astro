@@ -2,6 +2,8 @@
 import { Icon as AstroIcon } from "astro-icon/components";
 import Icon from "./Icon.astro";
 import SectionHeading from "./SectionHeading.astro";
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
 
 interface ProjectItem {
   id: string;
@@ -24,6 +26,9 @@ interface Props {
 }
 
 const { projects } = Astro.props;
+
+// Import all project images eagerly
+const projectImages = import.meta.glob<{ default: ImageMetadata }>('../assets/projects/*.{png,jpg,jpeg,webp,avif,gif,svg,tiff}', { eager: true });
 
 
 const getTechIcon = (tech: string) => {
@@ -70,7 +75,14 @@ const getTechIcon = (tech: string) => {
       <article class="project-card reveal reveal--up" style={`--reveal-delay: ${120 + index * 70}ms;`}>
         <div class="project-card__media">
           {project.image ? (
-            <img src={project.image} alt={project.name} class="project-card__image" loading="lazy" />
+            (() => {
+              const key = `../assets/projects/${project.image}`;
+              const mod = projectImages[key];
+              if (mod) {
+                return <Image src={mod.default} alt={project.name} class="project-card__image" loading="lazy" />;
+              }
+              return null;
+            })()
           ) : (
             <div class="project-card__placeholder" aria-hidden="true">
               <span>{project.name.slice(0, 2).toUpperCase()}</span>

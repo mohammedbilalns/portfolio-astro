@@ -1,6 +1,8 @@
 ---
 import { Icon as AstroIcon } from "astro-icon/components";
 import Icon from "./Icon.astro";
+import { Image } from "astro:assets";
+import bannerProfile from "../assets/banner-profile.png";
 
 interface ContactDetails {
   email: string;
@@ -37,7 +39,7 @@ const socialLinks = [
 <section class="hero section" id="home">
   <div class="hero__media reveal reveal--scale" style="--reveal-delay: 80ms;">
     <div class="hero__banner" aria-hidden="true">
-      <img src="/banner-profile.png" alt="Mohammed Bilal N S" class="hero__banner-img" />
+      <Image src={bannerProfile} alt="Mohammed Bilal N S" class="hero__banner-img" />
     </div>
     <p class="hero__meta">
       <AstroIcon name="solar:map-point-bold-duotone" class="hero__meta-icon hero__meta-icon--location" />
