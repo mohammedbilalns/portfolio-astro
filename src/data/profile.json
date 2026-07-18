@@ -166,6 +166,28 @@
         "image": "/techhive.png"
       },
       {
+        "id": "cinemind",
+        "name": "CineMind",
+        "category": "AI-Powered Movie Recommendation Platform",
+        "description": "Built an AI-powered movie recommendation platform leveraging LangChain and TMDB to generate personalized recommendations with contextual explanations and rich movie metadata.",
+        "technologies": [
+          "Fastify",
+          "TypeScript",
+          "LangChain",
+          "Zod",
+          "TMDB API"
+        ],
+        "features": [
+          "Personalized AI movie recommendations",
+          "Contextual explanations for each suggestion",
+          "Rich movie metadata from TMDB",
+          "Type-safe API with Zod validation"
+        ],
+        "liveDemo": "https://cinemind.bilalnsmuhammed.in",
+        "sourceCode": "https://github.com/mohammedbilalns/cinemind",
+        "image": "/cinemind.png"
+      },
+      {
         "id": "lumina",
         "name": "Lumina",
         "category": "Article Feed Platform",
