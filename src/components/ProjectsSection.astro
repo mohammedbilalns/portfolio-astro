@@ -29,41 +29,70 @@ const { projects } = Astro.props;
 
 // Import all project images eagerly
 const projectImages = import.meta.glob<{ default: ImageMetadata }>('../assets/projects/*.{png,jpg,jpeg,webp,avif,gif,svg,tiff}', { eager: true });
+const techImages = import.meta.glob<{ default: ImageMetadata }>('../assets/tech/*.{png,jpg,jpeg,webp,avif,gif,svg,tiff}', { eager: true });
 
+const techImageByKey = {
+  bullmq: techImages["../assets/tech/bullmq.png"]?.default,
+  drizzle: techImages["../assets/tech/drizzle.png"]?.default,
+  langchain: techImages["../assets/tech/langchain.png"]?.default,
+  razorpay: techImages["../assets/tech/razorpay.png"]?.default,
+  tanstack: techImages["../assets/tech/tanstack.png"]?.default,
+  tesseract: techImages["../assets/tech/tesseract.png"]?.default,
+  tmdb: techImages["../assets/tech/tmdb.png"]?.default,
+  webrtc: techImages["../assets/tech/webrtc.png"]?.default,
+  zod: techImages["../assets/tech/zod.webp"]?.default,
+};
 
-const getTechIcon = (tech: string) => {
+const techIconRules = [
+  { match: "react", icon: { name: "skill-icons:react-dark", color: "#61DAFB" } },
+  { match: "typescript", icon: { name: "skill-icons:typescript", color: "#3178C6" } },
+  { match: "next", icon: { name: "skill-icons:nextjs-dark", color: "#FFFFFF" } },
+  { match: "node", icon: { name: "skill-icons:nodejs-dark", color: "#66CC22" } },
+  { match: "express", icon: { name: "skill-icons:expressjs-dark", color: "#000000" } },
+  { match: "nest", icon: { name: "skill-icons:nestjs-dark", color: "#E0234E" } },
+  { match: "fastify", icon: { name: "solar:stars-bold-duotone", color: "#000000" } },
+  { match: "langchain", image: techImageByKey.langchain },
+  { match: "zod", image: techImageByKey.zod },
+  { match: "tmdb", image: techImageByKey.tmdb },
+  { match: "mongo", icon: { name: "skill-icons:mongodb", color: "#47B363" } },
+  { match: "postgre", icon: { name: "skill-icons:postgresql-dark", color: "#336798" } },
+  { match: "redis", icon: { name: "skill-icons:redis-dark", color: "#DC382B" } },
+  { match: "docker", icon: { name: "skill-icons:docker", color: "#007BD1" } },
+  { match: "tailwind", icon: { name: "skill-icons:tailwindcss-dark", color: "#06B6D4" } },
+  { match: "aws", icon: { name: "skill-icons:aws-dark", color: "#FF9900" } },
+  { match: "paypal", icon: { name: "logos:paypal", color: "#0071C5" } },
+  { match: "bullmq", image: techImageByKey.bullmq },
+  { match: "razorpay", image: techImageByKey.razorpay },
+  { match: "websocket", icon: { name: "tabler:brand-socket-io", color: "#01A84C" } },
+  { match: "webrtc", image: techImageByKey.webrtc },
+  { match: "drizzle", image: techImageByKey.drizzle },
+  { match: "tanstack", image: techImageByKey.tanstack },
+  { match: "ejs", icon: { name: "simple-icons:ejs", color: "#ADADAD" } },
+  { match: "mvc", icon: { name: "carbon:workflow-automation", color: "#93C5FD" } },
+  { match: "tesseract", image: techImageByKey.tesseract },
+  { match: "image processing", icon: { name: "solar:stars-bold-duotone", color: "#A855F7" } },
+  { match: "rest", icon: { name: "solar:stars-bold-duotone", color: "#38BDF8" } },
+];
+
+const resolveTechAsset = (tech: string) => {
   const normalized = tech.toLowerCase();
+  const match = techIconRules.find((rule) => normalized.includes(rule.match));
 
-  if (normalized.includes("react")) return { name: "skill-icons:react-dark", tone: "rgba(34, 211, 238, 0.14)", color: "#61DAFB" };
-  if (normalized.includes("typescript")) return { name: "skill-icons:typescript", tone: "rgba(96, 165, 250, 0.14)", color: "#3178C6" };
-  if (normalized.includes("next")) return { name: "skill-icons:nextjs-dark", tone: "rgba(255, 255, 255, 0.1)", color: "#FFFFFF" };
-  if (normalized.includes("node")) return { name: "skill-icons:nodejs-dark", tone: "rgba(132, 204, 22, 0.12)", color: "#66CC22" };
-  if (normalized.includes("express")) return { name: "skill-icons:expressjs-dark", tone: "rgba(209, 213, 219, 0.1)", color: "#000000" };
-  if (normalized.includes("nest")) return { name: "skill-icons:nestjs-dark", tone: "rgba(239, 68, 68, 0.12)", color: "#E0234E" };
-  if (normalized.includes("fastify")) return { name: "solar:stars-bold-duotone", tone: "rgba(0, 0, 0, 0.12)", color: "#000000" };
-  if (normalized.includes("langchain")) return { type: "image", src: "/langchain.png" };
-  if (normalized.includes("zod")) return { type: "image", src: "/zod.webp" };
-  if (normalized.includes("tmdb")) return { type: "image", src: "/tmdb.png" };
-  if (normalized.includes("mongo")) return { name: "skill-icons:mongodb", tone: "rgba(34, 197, 94, 0.12)", color: "#47B363" };
-  if (normalized.includes("postgre")) return { name: "skill-icons:postgresql-dark", tone: "rgba(96, 165, 250, 0.12)", color: "#336798" };
-  if (normalized.includes("redis")) return { name: "skill-icons:redis-dark", tone: "rgba(239, 68, 68, 0.12)", color: "#DC382B" };
-  if (normalized.includes("docker")) return { name: "skill-icons:docker", tone: "rgba(96, 165, 250, 0.14)", color: "#007BD1" };
-  if (normalized.includes("tailwind")) return { name: "skill-icons:tailwindcss-dark", tone: "rgba(34, 211, 238, 0.14)", color: "#06B6D4" };
-  if (normalized.includes("aws")) return { name: "skill-icons:aws-dark", tone: "rgba(245, 158, 11, 0.12)", color: "#FF9900" };
-  if (normalized.includes("paypal")) return { name: "logos:paypal", tone: "rgba(0, 113, 197, 0.14)", color: "#0071C5" };
-  if (normalized.includes("bullmq")) return { type: "image", src: "/bullmq.png" };
-  if (normalized.includes("razorpay")) return { type: "image", src: "/razorpay.png" };
-  if (normalized.includes("websocket")) return { name: "tabler:brand-socket-io", tone: "rgba(1, 168, 76, 0.12)", color: "#01A84C" };
-  if (normalized.includes("webrtc")) return { type: "image", src: "/webrtc.png" };
-  if (normalized.includes("drizzle")) return { type: "image", src: "/drizzle.png" };
-  if (normalized.includes("tanstack")) return { type: "image", src: "/tanstack.png" };
-  if (normalized.includes("ejs")) return { name: "simple-icons:ejs", tone: "rgba(173, 173, 173, 0.12)", color: "#ADADAD" };
-  if (normalized.includes("mvc")) return { name: "carbon:workflow-automation", tone: "rgba(147, 197, 253, 0.12)", color: "#93C5FD" };
-  if (normalized.includes("tesseract")) return { type: "image", src: "/tesseract.png" };
-  if (normalized.includes("image processing")) return { name: "solar:stars-bold-duotone", tone: "rgba(168, 85, 247, 0.12)", color: "#A855F7" };
-  if (normalized.includes("rest")) return { name: "solar:stars-bold-duotone", tone: "rgba(56, 189, 248, 0.12)", color: "#38BDF8" };
+  if (match?.image) {
+    return { type: "image" as const, src: match.image };
+  }
 
-  return { name: "solar:stars-bold-duotone", tone: "rgba(147, 197, 253, 0.12)", color: "#93C5FD" };
+  if (match?.icon) {
+    return { type: "icon" as const, ...match.icon };
+  }
+
+  return { type: "icon" as const, name: "solar:stars-bold-duotone", color: "#93C5FD" };
+};
+
+const resolveProjectImage = (image?: string) => {
+  if (!image) return null;
+  const key = `../assets/projects/${image}`;
+  return projectImages[key]?.default ?? null;
 };
 ---
 
@@ -73,68 +102,77 @@ const getTechIcon = (tech: string) => {
   </div>
 
   <div class="projects-list">
-    {projects.items.map((project, index) => (
-      <article class="project-card reveal reveal--up" style={`--reveal-delay: ${120 + index * 70}ms;`}>
-        <div class="project-card__media">
-          {project.image ? (
-            (() => {
-              if (project.image.startsWith("/")) {
-                return <img src={project.image} alt={project.name} class="project-card__image" loading="lazy" />;
-              }
+    {projects.items.map((project, index) => {
+      const projectImage = resolveProjectImage(project.image);
 
-              const key = `../assets/projects/${project.image}`;
-              const mod = projectImages[key];
-              if (mod) {
-                return <Image src={mod.default} alt={project.name} class="project-card__image" loading="lazy" />;
-              }
-              return null;
-            })()
-          ) : (
-            <div class="project-card__placeholder" aria-hidden="true">
-              <span>{project.name.slice(0, 2).toUpperCase()}</span>
-            </div>
-          )}
-        </div>
-
-        <div class="project-card__body">
-          <div class="project-card__header">
-            <div>
-              <p class="project-card__category">{project.category}</p>
-              <div class="project-card__title-row">
-                <h3>{project.name}</h3>
-                <div class="project-card__tech-icons">
-                  {project.technologies.map((tech) => {
-                    const icon = getTechIcon(tech);
-                    return icon.type === "image" ? (
-                      <img src={icon.src} alt={tech} class="project-card__tech-icon project-card__tech-icon--image" loading="lazy" />
-                    ) : (
-                      <AstroIcon name={icon.name} class="project-card__tech-icon" title={tech} style={`color: ${icon.color || 'var(--icon-color)'}`} />
-                    );
-                  })}
-                </div>
+      return (
+        <article class="project-card reveal reveal--up" style={`--reveal-delay: ${120 + index * 70}ms;`}>
+          <div class="project-card__media">
+            {projectImage ? (
+              <Image
+                src={projectImage}
+                alt={project.name}
+                class="project-card__image"
+                loading={index === 0 ? "eager" : "lazy"}
+                widths={[480, 720, 960]}
+                sizes="(max-width: 820px) 100vw, 40vw"
+                format="webp"
+              />
+            ) : (
+              <div class="project-card__placeholder" aria-hidden="true">
+                <span>{project.name.slice(0, 2).toUpperCase()}</span>
               </div>
-            </div>
-            <div class="project-card__actions">
-              <a href={project.liveDemo} target="_blank" rel="noreferrer">
-                Live Demo
-              </a>
-              <a href={project.sourceCode} target="_blank" rel="noreferrer">
-                <Icon name="github" class="project-card__action-icon" />
-                GitHub
-              </a>
-            </div>
+            )}
           </div>
 
-          <p class="project-card__description">{project.description}</p>
+          <div class="project-card__body">
+            <div class="project-card__header">
+              <div>
+                <p class="project-card__category">{project.category}</p>
+                <div class="project-card__title-row">
+                  <h3>{project.name}</h3>
+                  <div class="project-card__tech-icons">
+                    {project.technologies.map((tech) => {
+                      const asset = resolveTechAsset(tech);
+                      return asset.type === "image" ? (
+                        <Image
+                          src={asset.src}
+                          alt={tech}
+                          class="project-card__tech-icon project-card__tech-icon--image"
+                          loading="lazy"
+                          widths={[24, 48]}
+                          sizes="24px"
+                          format="webp"
+                        />
+                      ) : (
+                        <AstroIcon name={asset.name} class="project-card__tech-icon" title={tech} style={`color: ${asset.color}`} />
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+              <div class="project-card__actions">
+                <a href={project.liveDemo} target="_blank" rel="noreferrer">
+                  Live Demo
+                </a>
+                <a href={project.sourceCode} target="_blank" rel="noreferrer">
+                  <Icon name="github" class="project-card__action-icon" />
+                  GitHub
+                </a>
+              </div>
+            </div>
 
-          <ul class="project-card__features">
-            {project.features.map((feature) => (
-              <li>{feature}</li>
-            ))}
-          </ul>
-        </div>
-      </article>
-    ))}
+            <p class="project-card__description">{project.description}</p>
+
+            <ul class="project-card__features">
+              {project.features.map((feature) => (
+                <li>{feature}</li>
+              ))}
+            </ul>
+          </div>
+        </article>
+      );
+    })}
   </div>
 </section>
 
