@@ -152,7 +152,6 @@
           "EJS",
           "Tailwind CSS",
           "Razorpay",
-          "MVC",
           "AWS EC2"
         ],
         "features": [
@@ -185,7 +184,7 @@
         ],
         "liveDemo": "https://cinemind.bilalnsmuhammed.in",
         "sourceCode": "https://github.com/mohammedbilalns/cinemind",
-        "image": "cinemind.png"
+        "image": "/cinemind.png"
       },
       {
         "id": "lumina",
@@ -218,7 +217,6 @@
           "Node.js",
           "React",
           "Tesseract OCR",
-          "Image Processing",
           "TypeScript"
         ],
         "features": [

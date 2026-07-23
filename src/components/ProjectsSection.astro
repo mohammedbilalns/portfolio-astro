@@ -41,9 +41,9 @@ const getTechIcon = (tech: string) => {
   if (normalized.includes("express")) return { name: "skill-icons:expressjs-dark", tone: "rgba(209, 213, 219, 0.1)", color: "#000000" };
   if (normalized.includes("nest")) return { name: "skill-icons:nestjs-dark", tone: "rgba(239, 68, 68, 0.12)", color: "#E0234E" };
   if (normalized.includes("fastify")) return { name: "solar:stars-bold-duotone", tone: "rgba(0, 0, 0, 0.12)", color: "#000000" };
-  if (normalized.includes("langchain")) return { name: "solar:stars-bold-duotone", tone: "rgba(27, 197, 110, 0.12)", color: "#1BC56E" };
-  if (normalized.includes("zod")) return { name: "solar:stars-bold-duotone", tone: "rgba(61, 162, 249, 0.12)", color: "#3DA2F9" };
-  if (normalized.includes("tmdb")) return { name: "solar:stars-bold-duotone", tone: "rgba(1, 182, 139, 0.12)", color: "#01B68B" };
+  if (normalized.includes("langchain")) return { type: "image", src: "/langchain.png" };
+  if (normalized.includes("zod")) return { type: "image", src: "/zod.webp" };
+  if (normalized.includes("tmdb")) return { type: "image", src: "/tmdb.png" };
   if (normalized.includes("mongo")) return { name: "skill-icons:mongodb", tone: "rgba(34, 197, 94, 0.12)", color: "#47B363" };
   if (normalized.includes("postgre")) return { name: "skill-icons:postgresql-dark", tone: "rgba(96, 165, 250, 0.12)", color: "#336798" };
   if (normalized.includes("redis")) return { name: "skill-icons:redis-dark", tone: "rgba(239, 68, 68, 0.12)", color: "#DC382B" };
@@ -52,12 +52,14 @@ const getTechIcon = (tech: string) => {
   if (normalized.includes("aws")) return { name: "skill-icons:aws-dark", tone: "rgba(245, 158, 11, 0.12)", color: "#FF9900" };
   if (normalized.includes("paypal")) return { name: "logos:paypal", tone: "rgba(0, 113, 197, 0.14)", color: "#0071C5" };
   if (normalized.includes("bullmq")) return { type: "image", src: "/bullmq.png" };
+  if (normalized.includes("razorpay")) return { type: "image", src: "/razorpay.png" };
   if (normalized.includes("websocket")) return { name: "tabler:brand-socket-io", tone: "rgba(1, 168, 76, 0.12)", color: "#01A84C" };
-  if (normalized.includes("webrtc")) return { name: "mdi:video-wireless-outline", tone: "rgba(51, 102, 204, 0.12)", color: "#3366CC" };
-  if (normalized.includes("drizzle")) return { name: "simple-icons:drizzle", tone: "rgba(195, 52, 255, 0.12)", color: "#C334FF" };
+  if (normalized.includes("webrtc")) return { type: "image", src: "/webrtc.png" };
+  if (normalized.includes("drizzle")) return { type: "image", src: "/drizzle.png" };
+  if (normalized.includes("tanstack")) return { type: "image", src: "/tanstack.png" };
   if (normalized.includes("ejs")) return { name: "simple-icons:ejs", tone: "rgba(173, 173, 173, 0.12)", color: "#ADADAD" };
   if (normalized.includes("mvc")) return { name: "carbon:workflow-automation", tone: "rgba(147, 197, 253, 0.12)", color: "#93C5FD" };
-  if (normalized.includes("tesseract")) return { name: "mdi:text-recognition", tone: "rgba(244, 114, 182, 0.12)", color: "#F472B6" };
+  if (normalized.includes("tesseract")) return { type: "image", src: "/tesseract.png" };
   if (normalized.includes("image processing")) return { name: "solar:stars-bold-duotone", tone: "rgba(168, 85, 247, 0.12)", color: "#A855F7" };
   if (normalized.includes("rest")) return { name: "solar:stars-bold-duotone", tone: "rgba(56, 189, 248, 0.12)", color: "#38BDF8" };
 
@@ -76,6 +78,10 @@ const getTechIcon = (tech: string) => {
         <div class="project-card__media">
           {project.image ? (
             (() => {
+              if (project.image.startsWith("/")) {
+                return <img src={project.image} alt={project.name} class="project-card__image" loading="lazy" />;
+              }
+
               const key = `../assets/projects/${project.image}`;
               const mod = projectImages[key];
               if (mod) {
