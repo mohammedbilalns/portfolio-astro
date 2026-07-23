@@ -31,6 +31,7 @@ interface Props {
 }
 
 const { contact } = Astro.props;
+const web3FormsAccessKey = "dfbd05c7-6865-4b6b-b1b0-4be1a604019d";
 
 const detailEntries = [
   ["Email", contact.details.email],
@@ -75,11 +76,12 @@ const linkEntries = [
       <h3>{contact.form.title}</h3>
 
       <form
-        action={`mailto:${contact.details.email}`}
-        method="post"
-        enctype="text/plain"
+        action="https://api.web3forms.com/submit"
+        method="POST"
         class="contact-form"
       >
+        <input type="hidden" name="access_key" value={web3FormsAccessKey} />
+
         {contact.form.fields.map((field) =>
           field.name === "message" ? (
             <label>
@@ -96,7 +98,7 @@ const linkEntries = [
               <span>{field.label}</span>
               <input
                 type={field.name === "email" ? "email" : "text"}
-                name={field.name}
+                name={field.name === "fullName" ? "name" : field.name}
                 placeholder={field.placeholder}
                 required={field.required}
               />
