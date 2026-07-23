@@ -51,7 +51,7 @@ const getTechIcon = (tech: string) => {
   if (normalized.includes("tailwind")) return { name: "skill-icons:tailwindcss-dark", tone: "rgba(34, 211, 238, 0.14)", color: "#06B6D4" };
   if (normalized.includes("aws")) return { name: "skill-icons:aws-dark", tone: "rgba(245, 158, 11, 0.12)", color: "#FF9900" };
   if (normalized.includes("paypal")) return { name: "logos:paypal", tone: "rgba(0, 113, 197, 0.14)", color: "#0071C5" };
-  if (normalized.includes("bullmq")) return { name: "carbon:message-queue", tone: "rgba(251, 191, 36, 0.12)", color: "#FF5900" };
+  if (normalized.includes("bullmq")) return { type: "image", src: "/bullmq.png" };
   if (normalized.includes("websocket")) return { name: "tabler:brand-socket-io", tone: "rgba(1, 168, 76, 0.12)", color: "#01A84C" };
   if (normalized.includes("webrtc")) return { name: "mdi:video-wireless-outline", tone: "rgba(51, 102, 204, 0.12)", color: "#3366CC" };
   if (normalized.includes("drizzle")) return { name: "simple-icons:drizzle", tone: "rgba(195, 52, 255, 0.12)", color: "#C334FF" };
@@ -99,7 +99,9 @@ const getTechIcon = (tech: string) => {
                 <div class="project-card__tech-icons">
                   {project.technologies.map((tech) => {
                     const icon = getTechIcon(tech);
-                    return (
+                    return icon.type === "image" ? (
+                      <img src={icon.src} alt={tech} class="project-card__tech-icon project-card__tech-icon--image" loading="lazy" />
+                    ) : (
                       <AstroIcon name={icon.name} class="project-card__tech-icon" title={tech} style={`color: ${icon.color || 'var(--icon-color)'}`} />
                     );
                   })}
@@ -273,6 +275,10 @@ const getTechIcon = (tech: string) => {
     height: 1.45rem;
     object-fit: contain;
     flex-shrink: 0;
+  }
+
+  .project-card__tech-icon--image {
+    border-radius: 0.3rem;
   }
 
   .project-card__features {
