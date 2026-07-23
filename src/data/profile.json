@@ -311,7 +311,7 @@
         {
           "name": "message",
           "label": "Message",
-          "placeholder": "Tell me about your project or just say hello...",
+          "placeholder": "Share what you have in mind or just say hello...",
           "required": true
         }
       ],
