@@ -182,13 +182,20 @@ const getTechIcon = (tech: string) => {
 
   .project-card__body {
     padding: 1.5rem;
+    min-width: 0;
   }
 
   .project-card__header {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
     gap: 1rem;
     margin-bottom: 1rem;
+  }
+
+  .project-card__header > div:first-child {
+    min-width: 0;
+    flex: 1;
   }
 
   .project-card__category,
@@ -205,12 +212,16 @@ const getTechIcon = (tech: string) => {
   .project-card__header h3 {
     margin: 0;
     font-size: 1.45rem;
+    overflow-wrap: anywhere;
   }
 
   .project-card__actions {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
+    flex-wrap: wrap;
     gap: 1.5rem;
+    flex-shrink: 0;
   }
 
   .project-card__actions a {
@@ -239,6 +250,7 @@ const getTechIcon = (tech: string) => {
   .project-card__description {
     color: #d3dce8;
     line-height: 1.75;
+    overflow-wrap: anywhere;
   }
 
   .project-card__title-row {
@@ -252,6 +264,7 @@ const getTechIcon = (tech: string) => {
   .project-card__tech-icons {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 0.45rem;
   }
 
@@ -274,6 +287,25 @@ const getTechIcon = (tech: string) => {
   @media (max-width: 820px) {
     .project-card {
       grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .project-card__body {
+      padding: 1.2rem;
+    }
+
+    .project-card__header {
+      flex-direction: column;
+    }
+
+    .project-card__actions {
+      justify-content: flex-start;
+      gap: 1rem;
+    }
+
+    .project-card__header h3 {
+      font-size: 1.3rem;
     }
   }
 </style>
