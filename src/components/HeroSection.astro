@@ -23,6 +23,7 @@ interface Props {
   };
   about: {
     description: string;
+    descriptionHtml?: string;
   };
   contact: ContactDetails;
 }
@@ -68,7 +69,9 @@ const socialLinks = [
     <p class="hero__role reveal reveal--up" style="--reveal-delay: 240ms;">{hero.title}</p>
     <p class="hero__description reveal reveal--up" style="--reveal-delay: 320ms;">{hero.description}</p>
 
-    <p class="hero__about reveal reveal--up" style="--reveal-delay: 380ms;">{about.description}</p>
+    <p class="hero__about reveal reveal--up" style="--reveal-delay: 380ms;">
+      {about.descriptionHtml ? <Fragment set:html={about.descriptionHtml} /> : about.description}
+    </p>
 
     <div class="hero__actions reveal reveal--up" style="--reveal-delay: 440ms;">
       <a class="button button--primary" href={hero.primaryButton.href}>{hero.primaryButton.text}</a>
@@ -205,6 +208,16 @@ const socialLinks = [
   .hero__role,
   .hero__description {
     margin: 0;
+  }
+
+  .hero__about :global(a) {
+    color: #8ebeff;
+    text-decoration: underline;
+    text-underline-offset: 0.14em;
+  }
+
+  .hero__about :global(a:hover) {
+    color: #cfe2ff;
   }
 
   .hero__greeting {

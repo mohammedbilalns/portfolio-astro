@@ -43,7 +43,8 @@
   },
   "about": {
     "title": "About Me",
-    "description": "I'm a Full-Stack Software Developer passionate about building scalable, secure, and modern web applications. I enjoy solving complex problems, writing clean and maintainable code, and continuously learning new technologies to create better software solutions. I believe in designing systems that are not only functional but also efficient, reliable, and easy to maintain, while constantly improving my skills through hands-on development and exploration."
+    "description": "I'm a Full-Stack Software Developer focused on building scalable, secure, and modern web applications. I enjoy solving problems, writing clean maintainable code, and learning through hands-on development.",
+    "descriptionHtml": "I'm a Full-Stack Software Developer focused on building scalable, secure, and modern web applications. I enjoy solving problems, writing clean maintainable code, and learning through hands-on development. I also like tinkering with different technologies, especially GNU/Linux, and maintain a public <a href=\"https://github.com/mohammedbilalns/dotfiles\" target=\"_blank\" rel=\"noreferrer\">dotfiles repo</a> for my setup."
   },
   "education": {
     "title": "Educational Background",
