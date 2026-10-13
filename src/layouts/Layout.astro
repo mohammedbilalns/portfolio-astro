@@ -1,5 +1,4 @@
 ---
-import Header from "../components/Header.astro";
 import ScrollChrome from "../components/ScrollChrome.astro";
 import "../styles/global.css";
 
@@ -11,13 +10,12 @@ interface NavItem {
 interface Props {
   title: string;
   description: string;
-  logo: string;
   path?: string;
   jsonLd?: Record<string, unknown>;
 }
 
 const siteUrl = "https://bilalnsmuhammed.in";
-const { title, description, logo, path = "/", jsonLd } = Astro.props;
+const { title, description, path = "/", jsonLd } = Astro.props;
 const canonicalUrl = new URL(path, siteUrl).toString();
 const ogImageUrl = new URL("/banner-profile.png", siteUrl).toString();
 ---
@@ -49,7 +47,6 @@ const ogImageUrl = new URL("/banner-profile.png", siteUrl).toString();
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <div class="site-shell">
-      <Header logo={logo} name={title} />
       <slot />
     </div>
     <ScrollChrome />
