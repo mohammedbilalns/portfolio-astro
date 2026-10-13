@@ -10,12 +10,12 @@ export default defineConfig({
   integrations: [
     icon({
       include: {
-        carbon: ['workflow-automation', 'message-queue', 'diagram'],
+        carbon: ['workflow-automation', 'message-queue', 'diagram', 'terminal'],
         devicon: ['zustand'],
-        logos: ['paypal', 'react-query-icon', 'stripe', 'websocket', 'grafana', 'socket-io'],
+        logos: ['paypal', 'react-query-icon', 'stripe', 'websocket', 'grafana', 'socket-io', 'whatsapp-icon'],
         mdi: ['video-wireless-outline', 'text-recognition'],
-        ph: ['brackets-curly-duotone', 'image-square-duotone', 'puzzle-piece-duotone'],
-        'simple-icons': ['drizzle', 'ejs', 'leetcode', 'tanstack', 'razorpay', 'github', 'linkedin', 'grafana', 'nginx'],
+        ph: ['brackets-curly-duotone', 'image-square-duotone', 'puzzle-piece-duotone', 'magnet-bold'],
+        'simple-icons': ['drizzle', 'ejs', 'leetcode', 'tanstack', 'razorpay', 'github', 'linkedin', 'grafana', 'nginx', 'bittorrent', 'toml'],
         'skill-icons': [
           'aws-dark',
           'docker',
@@ -36,6 +36,7 @@ export default defineConfig({
           'react-dark',
           'redis-dark',
           'redux',
+          'sqlite',
           'tailwindcss-dark',
           'typescript',
           'linkedin',

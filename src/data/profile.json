@@ -272,6 +272,47 @@
         "image": "shrinklinkg.png",
         "liveDemo": "https://shrinklink.bilalnsmuhammed.in",
         "sourceCode": "https://github.com/mohammedbilalns/shrinklink"
+      },
+      {
+        "id": "magneto",
+        "name": "Magneto",
+        "category": "TUI BitTorrent Client",
+        "description": "Terminal-native BitTorrent client for managing magnet downloads with pause/resume, rate limits, and TOML-based config.",
+        "technologies": [
+          "Go",
+          "Bubble Tea",
+          "BitTorrent",
+          "TOML"
+        ],
+        "features": [
+          "Magnet download management with pause and resume",
+          "Keyboard-first TUI (add, pause, resume, delete, quit)",
+          "Configurable download dir, parallel downloads, and rate limits",
+          "Safe delete with confirmation and full reset support"
+        ],
+        "sourceCode": "https://github.com/mohammedbilalns/magneto",
+        "status": "ongoing"
+      },
+      {
+        "id": "whatcli",
+        "name": "WhatCLI",
+        "category": "WhatsApp CLI & Automation",
+        "description": "Pure terminal-native CLI for the WhatsApp backend — messaging, media, groups, contacts, automations, and a background daemon over the native WebSocket protocol.",
+        "technologies": [
+          "Node.js",
+          "TypeScript",
+          "Baileys",
+          "SQLite",
+          "WhatsApp Web API"
+        ],
+        "features": [
+          "QR login, session management, and connection doctor",
+          "Send text, images, and documents; reply, react, and search",
+          "Background daemon with SQLite storage and IPC",
+          "Rule engine for keyword/regex auto-replies and reactions"
+        ],
+        "sourceCode": "https://github.com/mohammedbilalns/whatcli",
+        "status": "ongoing"
       }
     ]
   },

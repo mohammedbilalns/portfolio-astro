@@ -12,9 +12,10 @@ interface ProjectItem {
   description: string;
   technologies: string[];
   features: string[];
-  liveDemo: string;
+  liveDemo?: string;
   sourceCode: string;
   image?: string;
+  status?: "ongoing" | "completed";
 }
 
 interface Props {
@@ -70,6 +71,17 @@ const techIconRules = [
   { match: "ejs", icon: { name: "simple-icons:ejs", color: "#ADADAD" } },
   { match: "mvc", icon: { name: "carbon:workflow-automation", color: "#93C5FD" } },
   { match: "tesseract", image: techImageByKey.tesseract },
+  { match: "go", icon: { name: "skill-icons:golang", color: "#00ADD8" } },
+  { match: "bubble", icon: { name: "carbon:terminal", color: "#FF6B6B" } },
+  { match: "tui", icon: { name: "carbon:terminal", color: "#FF6B6B" } },
+  { match: "terminal", icon: { name: "carbon:terminal", color: "#FF6B6B" } },
+  { match: "torrent", icon: { name: "simple-icons:bittorrent", color: "#22C55E" } },
+  { match: "magnet", icon: { name: "ph:magnet-bold", color: "#22C55E" } },
+  { match: "bittorrent", icon: { name: "simple-icons:bittorrent", color: "#22C55E" } },
+  { match: "toml", icon: { name: "simple-icons:toml", color: "#9C4128" } },
+  { match: "sqlite", icon: { name: "skill-icons:sqlite", color: "#0F80CC" } },
+  { match: "whatsapp", icon: { name: "logos:whatsapp-icon", color: "#25D366" } },
+  { match: "baileys", icon: { name: "tabler:brand-socket-io", color: "#01A84C" } },
   { match: "image processing", icon: { name: "solar:stars-bold-duotone", color: "#A855F7" } },
   { match: "rest", icon: { name: "solar:stars-bold-duotone", color: "#38BDF8" } },
 ];
@@ -131,6 +143,12 @@ const resolveProjectImage = (image?: string) => {
                 <p class="project-card__category">{project.category}</p>
                 <div class="project-card__title-row">
                   <h3>{project.name}</h3>
+                  {project.status === "ongoing" && (
+                    <span class="project-card__status" title="Actively in development">
+                      <span class="project-card__status-dot" aria-hidden="true" />
+                      Ongoing
+                    </span>
+                  )}
                   <div class="project-card__tech-icons">
                     {project.technologies.map((tech) => {
                       const asset = resolveTechAsset(tech);
@@ -152,9 +170,11 @@ const resolveProjectImage = (image?: string) => {
                 </div>
               </div>
               <div class="project-card__actions">
-                <a href={project.liveDemo} target="_blank" rel="noreferrer">
-                  Live Demo
-                </a>
+                {project.liveDemo && (
+                  <a href={project.liveDemo} target="_blank" rel="noreferrer">
+                    Live Demo
+                  </a>
+                )}
                 <a href={project.sourceCode} target="_blank" rel="noreferrer">
                   <Icon name="github" class="project-card__action-icon" />
                   GitHub
@@ -305,6 +325,35 @@ const resolveProjectImage = (image?: string) => {
     align-items: center;
     gap: 0.75rem;
     margin-top: 0.25rem;
+  }
+
+  .project-card__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #fbbf24;
+    border: 1px solid rgba(251, 191, 36, 0.35);
+    background: rgba(251, 191, 36, 0.08);
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .project-card__status-dot {
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 999px;
+    background: #fbbf24;
+    animation: status-pulse 1.6s ease-in-out infinite;
+  }
+
+  @keyframes status-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.45; transform: scale(0.8); }
   }
 
   .project-card__tech-icons {
