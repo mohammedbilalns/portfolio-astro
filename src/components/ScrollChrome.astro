@@ -66,9 +66,16 @@
 
   .scroll-progress__bar {
     height: 100%;
-    background: linear-gradient(90deg, #2563eb, #60a5fa, #4ade80);
+    background: linear-gradient(90deg, #2563eb, #60a5fa, #4ade80, #60a5fa, #2563eb);
+    background-size: 200% 100%;
     transform: scaleX(0);
     transform-origin: left;
+    animation: progress-slide 4s linear infinite;
+  }
+
+  @keyframes progress-slide {
+    from { background-position: 0% 0; }
+    to { background-position: 200% 0; }
   }
 
   .back-to-top {
@@ -109,6 +116,10 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
+    .scroll-progress__bar {
+      animation: none;
+    }
+
     .back-to-top {
       transition: none;
     }

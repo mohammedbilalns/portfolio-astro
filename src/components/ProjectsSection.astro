@@ -118,7 +118,10 @@ const resolveProjectImage = (image?: string) => {
       const projectImage = resolveProjectImage(project.image);
 
       return (
-        <article class="project-card reveal reveal--up" style={`--reveal-delay: ${120 + index * 70}ms;`}>
+        <article
+          class={`project-card reveal reveal--up${project.status === "ongoing" ? " project-card--ongoing" : " project-card--shipped"}`}
+          style={`--reveal-delay: ${120 + index * 70}ms;`}
+        >
           <div class="project-card__media">
             {projectImage ? (
               <Image
@@ -212,6 +215,27 @@ const resolveProjectImage = (image?: string) => {
     overflow: hidden;
     border: 1px solid rgba(96, 165, 250, 0.2);
     background: #050505;
+    transition: transform 240ms ease, border-color 240ms ease, box-shadow 240ms ease;
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(96, 165, 250, 0.45);
+    box-shadow: 0 18px 50px rgba(37, 99, 235, 0.18);
+  }
+
+  .project-card--ongoing {
+    border-inline-start: 3px solid rgba(251, 191, 36, 0.65);
+  }
+
+  .project-card--ongoing:hover {
+    border-color: rgba(251, 191, 36, 0.45);
+    border-inline-start-color: rgba(251, 191, 36, 0.9);
+    box-shadow: 0 18px 50px rgba(251, 191, 36, 0.12);
+  }
+
+  .project-card--shipped {
+    border-inline-start: 3px solid rgba(74, 222, 128, 0.35);
   }
 
   .project-card__media {
@@ -275,7 +299,9 @@ const resolveProjectImage = (image?: string) => {
   .project-card__category {
     color: #8ebeff;
     margin-bottom: 0.35rem;
-    font-size: 0.92rem;
+    font-size: 0.85rem;
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+    letter-spacing: 0.05em;
   }
 
   .project-card__header h3 {
@@ -371,7 +397,22 @@ const resolveProjectImage = (image?: string) => {
     height: 1.45rem;
     object-fit: contain;
     flex-shrink: 0;
+    transition: translate 180ms ease;
   }
+
+  .project-card:hover .project-card__tech-icon {
+    translate: 0 -3px;
+  }
+
+  .project-card:hover .project-card__tech-icon:nth-child(2) { transition-delay: 25ms; }
+  .project-card:hover .project-card__tech-icon:nth-child(3) { transition-delay: 50ms; }
+  .project-card:hover .project-card__tech-icon:nth-child(4) { transition-delay: 75ms; }
+  .project-card:hover .project-card__tech-icon:nth-child(5) { transition-delay: 100ms; }
+  .project-card:hover .project-card__tech-icon:nth-child(6) { transition-delay: 125ms; }
+  .project-card:hover .project-card__tech-icon:nth-child(7) { transition-delay: 150ms; }
+  .project-card:hover .project-card__tech-icon:nth-child(8) { transition-delay: 175ms; }
+  .project-card:hover .project-card__tech-icon:nth-child(9) { transition-delay: 200ms; }
+  .project-card:hover .project-card__tech-icon:nth-child(10) { transition-delay: 225ms; }
 
   .project-card__tech-icon--image {
     border-radius: 0.3rem;
