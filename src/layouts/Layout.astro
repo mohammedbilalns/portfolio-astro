@@ -12,9 +12,14 @@ interface Props {
   title: string;
   description: string;
   logo: string;
+  path?: string;
+  jsonLd?: Record<string, unknown>;
 }
 
-const { title, description, logo } = Astro.props;
+const siteUrl = "https://bilalnsmuhammed.in";
+const { title, description, logo, path = "/", jsonLd } = Astro.props;
+const canonicalUrl = new URL(path, siteUrl).toString();
+const ogImageUrl = new URL("/banner-profile.png", siteUrl).toString();
 ---
 
 <!doctype html>
@@ -26,9 +31,23 @@ const { title, description, logo } = Astro.props;
     <link rel="shortcut icon" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="theme-color" content="#050505" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:alt" content={title} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
     <title>{title}</title>
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <div class="site-shell">
       <Header logo={logo} name={title} />
       <slot />

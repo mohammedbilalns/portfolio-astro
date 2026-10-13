@@ -47,7 +47,13 @@ const socialLinks = [
 <section class="hero section" id="home">
   <div class="hero__media reveal reveal--scale" style="--reveal-delay: 80ms;">
     <div class="hero__banner" aria-hidden="true">
-      <Image src={bannerProfile} alt="Mohammed Bilal N S" class="hero__banner-img" />
+      <Image
+        src={bannerProfile}
+        alt="Mohammed Bilal N S"
+        class="hero__banner-img"
+        loading="eager"
+        fetchpriority="high"
+      />
     </div>
     <p class="hero__meta">
       <AstroIcon name="solar:map-point-bold-duotone" class="hero__meta-icon hero__meta-icon--location" />

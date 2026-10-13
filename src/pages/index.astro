@@ -13,8 +13,26 @@ import profile from "../data/profile.json";
   title={profile.site.title}
   description={profile.hero.description}
   logo={profile.site.logo}
+  jsonLd={{
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: profile.hero.name,
+    jobTitle: profile.hero.title,
+    description: profile.hero.description,
+    url: "https://bilalnsmuhammed.in/",
+    address: {
+      "@type": "PostalAddress",
+      addressRegion: "Kerala",
+      addressCountry: "IN",
+    },
+    sameAs: [
+      profile.contact.details.github,
+      profile.contact.details.linkedin,
+      profile.contact.details.leetcode,
+    ],
+  }}
 >
-  <main class="page-main">
+  <main class="page-main" id="main-content">
     <HeroSection
       hero={profile.hero}
       about={profile.about}
