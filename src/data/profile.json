@@ -268,7 +268,7 @@
         "description": "URL shortening service with click tracking, analytics, and management tools for monitoring link performance.",
         "technologies": [
           "React",
-          "Express.js",
+          "Go",
           "MongoDB",
           "Redis"
         ],

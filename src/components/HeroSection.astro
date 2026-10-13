@@ -15,7 +15,7 @@ interface ContactDetails {
 
 interface Props {
   hero: {
-    greeting: string;
+    greeting?: string;
     name: string;
     title: string;
     description: string;
@@ -75,7 +75,9 @@ const socialLinks = [
       <span class="hero__availability-dot" aria-hidden="true"></span>
       {contact.availability}
     </p>
-    <p class="hero__greeting reveal reveal--up" style="--reveal-delay: 120ms;">{hero.greeting}</p>
+    {hero.greeting && (
+      <p class="hero__greeting reveal reveal--up" style="--reveal-delay: 120ms;">{hero.greeting}</p>
+    )}
     <h1 class="hero__title reveal reveal--up" style="--reveal-delay: 180ms;">{hero.name}</h1>
     <p class="hero__role reveal reveal--up" style="--reveal-delay: 240ms;" id="hero-role">{hero.title}</p>
     <p class="hero__description reveal reveal--up" style="--reveal-delay: 320ms;">{hero.description}</p>
