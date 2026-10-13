@@ -13,20 +13,5 @@ const { logo, name } = Astro.props;
       <span class="brand__mark">{logo}</span>
       <span class="brand__name">{name.toLowerCase().replace(/\s+/g, "")}</span>
     </a>
-
-    <div class="header-clock" id="header-clock" aria-live="off">--:--:--</div>
   </div>
 </header>
-
-<script>
-  const clock = document.querySelector("#header-clock");
-
-  const updateTime = () => {
-    if (!clock) return;
-    const now = new Date();
-    clock.textContent = now.toLocaleTimeString("en-US", { hour12: false });
-  };
-
-  updateTime();
-  setInterval(updateTime, 1000);
-</script>

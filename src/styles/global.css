@@ -103,8 +103,7 @@ img {
   font-size: 0.95rem;
 }
 
-.brand__name,
-.header-clock {
+.brand__name {
   color: var(--text-muted);
   font-size: 0.95rem;
 }
@@ -216,8 +215,7 @@ img {
     width: calc(100% - 1.25rem);
   }
 
-  .brand__name,
-  .header-clock {
+  .brand__name {
     font-size: 0.88rem;
   }
 
