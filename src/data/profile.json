@@ -65,6 +65,15 @@
     "title": "Experience",
     "items": [
       {
+        "position": "Freelance Full Stack Developer",
+        "company": "Independent",
+        "duration": "Apr 2025 – Sep 2026",
+        "responsibilities": [
+          "Designed, built, and deployed responsive full-stack web applications using React, Node.js, Express, and MongoDB with secure REST APIs and JWT authentication.",
+          "Collaborated directly with clients to gather requirements, ship production-ready features on AWS and custom VPS, and ensure performance, maintainability, and on-time delivery."
+        ]
+      },
+      {
         "position": "Freelance Academic Services",
         "company": "Independent",
         "duration": "2024 – 2025",
