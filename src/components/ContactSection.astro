@@ -125,11 +125,59 @@ const linkEntries = [
           )
         )}
 
-        <button type="submit">{contact.form.submitText}</button>
+        <button type="submit" class="contact-form__submit">{contact.form.submitText}</button>
+
+        <p class="form-status" id="contact-form-status" role="status" aria-live="polite" hidden></p>
       </form>
     </article>
   </div>
 </section>
+
+<script>
+  const contactForm = document.querySelector(".contact-form");
+  const formStatus = document.querySelector("#contact-form-status");
+  const submitButton = contactForm?.querySelector('button[type="submit"]');
+
+  const setStatus = (message: string, kind: "success" | "error" | null) => {
+    if (!(formStatus instanceof HTMLElement)) return;
+    formStatus.hidden = kind === null;
+    formStatus.textContent = message;
+    formStatus.classList.toggle("form-status--success", kind === "success");
+    formStatus.classList.toggle("form-status--error", kind === "error");
+  };
+
+  if (contactForm instanceof HTMLFormElement) {
+    contactForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      setStatus("", null);
+      if (submitButton instanceof HTMLButtonElement) {
+        submitButton.disabled = true;
+        submitButton.textContent = "Sending…";
+      }
+      try {
+        const response = await fetch(contactForm.action, {
+          method: contactForm.method,
+          body: new FormData(contactForm),
+          headers: { Accept: "application/json" },
+        });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        contactForm.reset();
+        setStatus("Message sent! Thanks for reaching out — I'll get back to you soon.", "success");
+      } catch {
+        setStatus("Something went wrong sending your message. Please try again or email me directly.", "error");
+      } finally {
+        if (submitButton instanceof HTMLButtonElement) {
+          submitButton.disabled = false;
+          submitButton.textContent = submitButton.dataset.label ?? "Send Message";
+        }
+      }
+    });
+
+    if (submitButton instanceof HTMLButtonElement) {
+      submitButton.dataset.label = submitButton.textContent?.trim() ?? "Send Message";
+    }
+  }
+</script>
 
 <script>
   const copyButtons = document.querySelectorAll(".copy-email-btn");
@@ -315,6 +363,31 @@ const linkEntries = [
     color: white;
     font: inherit;
     cursor: pointer;
+  }
+
+  .contact-form button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+  }
+
+  .form-status {
+    margin: 0;
+    padding: 0.8rem 1rem;
+    border-radius: 14px;
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  .form-status--success {
+    border: 1px solid rgba(74, 222, 128, 0.4);
+    background: rgba(74, 222, 128, 0.08);
+    color: #86efac;
+  }
+
+  .form-status--error {
+    border: 1px solid rgba(248, 113, 113, 0.4);
+    background: rgba(248, 113, 113, 0.08);
+    color: #fca5a5;
   }
 
   @media (max-width: 820px) {

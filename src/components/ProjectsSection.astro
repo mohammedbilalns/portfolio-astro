@@ -184,11 +184,14 @@ const resolveProjectImage = (image?: string) => {
 
             <p class="project-card__description">{project.description}</p>
 
-            <ul class="project-card__features">
-              {project.features.map((feature) => (
-                <li>{feature}</li>
-              ))}
-            </ul>
+            <details class="project-card__features-wrap" open>
+              <summary class="project-card__features-toggle">Key features</summary>
+              <ul class="project-card__features">
+                {project.features.map((feature) => (
+                  <li>{feature}</li>
+                ))}
+              </ul>
+            </details>
           </div>
         </article>
       );
@@ -383,6 +386,49 @@ const resolveProjectImage = (image?: string) => {
     line-height: 1.6;
   }
 
+  .project-card__features-toggle {
+    display: none;
+  }
+
+  @media (max-width: 640px) {
+    .project-card__features-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin-top: 1rem;
+      color: #8ebeff;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+    }
+
+    .project-card__features-toggle::-webkit-details-marker {
+      display: none;
+    }
+
+    .project-card__features-toggle::after {
+      content: "+";
+      display: inline-grid;
+      place-items: center;
+      width: 1.15rem;
+      height: 1.15rem;
+      border-radius: 999px;
+      border: 1px solid rgba(96, 165, 250, 0.35);
+      font-size: 0.85rem;
+      line-height: 1;
+    }
+
+    .project-card__features-wrap[open] > .project-card__features-toggle::after {
+      content: "−";
+    }
+
+    .project-card__features-wrap:not([open]) > .project-card__features {
+      display: none;
+    }
+  }
+
   @media (max-width: 820px) {
     .project-card {
       grid-template-columns: 1fr;
@@ -408,3 +454,11 @@ const resolveProjectImage = (image?: string) => {
     }
   }
 </style>
+
+<script>
+  if (window.matchMedia("(max-width: 640px)").matches) {
+    document
+      .querySelectorAll(".project-card__features-wrap[open]")
+      .forEach((element) => element.removeAttribute("open"));
+  }
+</script>
