@@ -1,0 +1,94 @@
+---
+---
+
+<button
+  type="button"
+  class="theme-toggle"
+  id="theme-toggle"
+  aria-pressed="false"
+  aria-label="Switch to light theme"
+  title="Toggle theme"
+>
+  <svg class="theme-toggle__icon theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="4" />
+    <path d="M12 2v2" />
+    <path d="M12 20v2" />
+    <path d="m4.93 4.93 1.41 1.41" />
+    <path d="m17.66 17.66 1.41 1.41" />
+    <path d="M2 12h2" />
+    <path d="M20 12h2" />
+    <path d="m6.34 17.66-1.41 1.41" />
+    <path d="m19.07 4.93-1.41 1.41" />
+  </svg>
+  <svg class="theme-toggle__icon theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden>
+    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+  </svg>
+</button>
+
+<script>
+  const button = document.querySelector("#theme-toggle");
+  const sun = button?.querySelector(".theme-toggle__sun");
+  const moon = button?.querySelector(".theme-toggle__moon");
+
+  const getTheme = () =>
+    document.documentElement.dataset.theme === "light" ? "light" : "dark";
+
+  const sync = () => {
+    const theme = getTheme();
+    const isLight = theme === "light";
+    if (button instanceof HTMLButtonElement) {
+      button.setAttribute("aria-pressed", String(isLight));
+      button.setAttribute("aria-label", isLight ? "Switch to dark theme" : "Switch to light theme");
+    }
+    if (sun instanceof SVGSVGElement) sun.hidden = isLight;
+    if (moon instanceof SVGSVGElement) moon.hidden = !isLight;
+  };
+
+  button?.addEventListener("click", () => {
+    const next = getTheme() === "light" ? "dark" : "light";
+    document.documentElement.dataset.theme = next;
+    try {
+      localStorage.setItem("theme", next);
+    } catch {
+      /* storage unavailable */
+    }
+    sync();
+  });
+
+  sync();
+</script>
+
+<style>
+  .theme-toggle {
+    position: fixed;
+    left: 1.25rem;
+    bottom: 1.25rem;
+    z-index: 50;
+    width: 2.75rem;
+    height: 2.75rem;
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+    border: 1px solid rgba(96, 165, 250, 0.35);
+    background: rgba(10, 17, 31, 0.85);
+    backdrop-filter: blur(12px);
+    color: #8ebeff;
+    cursor: pointer;
+    transition: color 160ms ease, border-color 160ms ease, transform 160ms ease;
+  }
+
+  .theme-toggle:hover {
+    color: #ffffff;
+    border-color: rgba(96, 165, 250, 0.65);
+    transform: translateY(-2px);
+  }
+
+  .theme-toggle__icon {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+
+  .theme-toggle__icon[hidden] {
+    display: none;
+  }
+</style>

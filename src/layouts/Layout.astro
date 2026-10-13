@@ -1,5 +1,6 @@
 ---
 import ScrollChrome from "../components/ScrollChrome.astro";
+import ThemeToggle from "../components/ThemeToggle.astro";
 import "../styles/global.css";
 
 interface NavItem {
@@ -30,7 +31,8 @@ const ogImageUrl = new URL("/banner-profile.png", siteUrl).toString();
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
-    <meta name="theme-color" content="#050505" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#e5e8ec" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#050505" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
@@ -43,12 +45,27 @@ const ogImageUrl = new URL("/banner-profile.png", siteUrl).toString();
     <meta name="twitter:image" content={ogImageUrl} />
     <title>{title}</title>
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+    <script is:inline>
+      try {
+        const stored = localStorage.getItem("theme");
+        const theme =
+          stored === "light" || stored === "dark"
+            ? stored
+            : window.matchMedia("(prefers-color-scheme: light)").matches
+              ? "light"
+              : "dark";
+        document.documentElement.dataset.theme = theme;
+      } catch {
+        document.documentElement.dataset.theme = "dark";
+      }
+    </script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <div class="site-shell">
       <slot />
     </div>
+    <ThemeToggle />
     <ScrollChrome />
     <script>
       const observer = new IntersectionObserver(
