@@ -1,0 +1,116 @@
+---
+---
+
+<div class="scroll-progress" aria-hidden="true">
+  <div class="scroll-progress__bar" id="scroll-progress-bar"></div>
+</div>
+
+<button
+  type="button"
+  class="back-to-top"
+  id="back-to-top"
+  aria-label="Back to top"
+  title="Back to top"
+>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M12 19V5" />
+    <path d="m5 12 7-7 7 7" />
+  </svg>
+</button>
+
+<script>
+  const bar = document.querySelector("#scroll-progress-bar");
+  const button = document.querySelector("#back-to-top");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let ticking = false;
+
+  const update = () => {
+    ticking = false;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
+    if (bar instanceof HTMLElement) {
+      bar.style.transform = `scaleX(${progress})`;
+    }
+    if (button instanceof HTMLElement) {
+      button.classList.toggle("is-visible", window.scrollY > 600);
+    }
+  };
+
+  const onScroll = () => {
+    if (!ticking) {
+      ticking = true;
+      window.requestAnimationFrame(update);
+    }
+  };
+
+  update();
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+
+  button?.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+  });
+</script>
+
+<style>
+  .scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    z-index: 60;
+    background: transparent;
+    pointer-events: none;
+  }
+
+  .scroll-progress__bar {
+    height: 100%;
+    background: linear-gradient(90deg, #2563eb, #60a5fa, #4ade80);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  .back-to-top {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    z-index: 50;
+    width: 2.75rem;
+    height: 2.75rem;
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+    border: 1px solid rgba(96, 165, 250, 0.35);
+    background: rgba(10, 17, 31, 0.85);
+    backdrop-filter: blur(12px);
+    color: #8ebeff;
+    cursor: pointer;
+    opacity: 0;
+    translate: 0 0.75rem;
+    pointer-events: none;
+    transition: opacity 240ms ease, translate 240ms ease, color 160ms ease, border-color 160ms ease;
+  }
+
+  .back-to-top.is-visible {
+    opacity: 1;
+    translate: 0 0;
+    pointer-events: auto;
+  }
+
+  .back-to-top:hover {
+    color: #ffffff;
+    border-color: rgba(96, 165, 250, 0.65);
+  }
+
+  .back-to-top svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .back-to-top {
+      transition: none;
+    }
+  }
+</style>

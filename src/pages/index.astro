@@ -15,7 +15,21 @@ import profile from "../data/profile.json";
   logo={profile.site.logo}
 >
   <main class="page-main">
-    <HeroSection hero={profile.hero} about={profile.about} contact={profile.contact.details} />
+    <HeroSection
+      hero={profile.hero}
+      about={profile.about}
+      contact={profile.contact.details}
+      stats={[
+        { value: String(profile.projects.items.length), label: "Projects" },
+        { value: String(profile.techArsenal.items.length), label: "Technologies" },
+        {
+          value: String(
+            profile.projects.items.filter((item) => "status" in item && item.status === "ongoing").length,
+          ),
+          label: "Ongoing",
+        },
+      ]}
+    />
     <AboutSection education={profile.education} />
     <ExperienceSection experience={profile.experience} />
     <SkillsSection techArsenal={profile.techArsenal} />

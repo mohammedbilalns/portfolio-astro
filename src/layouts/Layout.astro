@@ -1,5 +1,6 @@
 ---
 import Header from "../components/Header.astro";
+import ScrollChrome from "../components/ScrollChrome.astro";
 import "../styles/global.css";
 
 interface NavItem {
@@ -32,6 +33,7 @@ const { title, description, logo } = Astro.props;
       <Header logo={logo} name={title} />
       <slot />
     </div>
+    <ScrollChrome />
     <script>
       const observer = new IntersectionObserver(
         (entries) => {
