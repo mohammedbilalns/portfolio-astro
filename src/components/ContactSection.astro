@@ -395,16 +395,23 @@ const channels = [
   @media (max-width: 900px) {
     .contact-editorial {
       grid-template-columns: 1fr;
-      gap: 3rem;
+      gap: 2.5rem;
     }
     .form-wrapper {
-      padding: 2.25rem 1.75rem;
+      padding: 2rem 1.5rem;
     }
   }
 
-  @media (max-width: 600px) {
-    .field-pair {
-      grid-template-columns: 1fr;
+  @media (max-width: 500px) {
+    .form-wrapper {
+      padding: 1.5rem 1rem;
+    }
+    .channel-item {
+      padding: 0.95rem 0;
+    }
+    .channel-val {
+      font-size: 0.8125rem;
+      word-break: break-all;
     }
   }
 </style>

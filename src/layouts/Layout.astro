@@ -28,9 +28,9 @@ const navItems = [
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="shortcut icon" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
@@ -43,7 +43,7 @@ const navItems = [
       rel="stylesheet"
     />
 
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8fafc" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#eeeae2" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#08090d" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
@@ -82,10 +82,10 @@ const navItems = [
         <div class="site-header__inner">
           <a href="#home" class="nav-brand" aria-label="Mohammed Bilal - Home">
             <span class="nav-brand__name">Mohammed Bilal N S</span>
-            <span class="nav-brand__title">Full-Stack Developer</span>
           </a>
 
-          <nav class="nav-menu" aria-label="Main Navigation">
+          <!-- Desktop Navigation Menu -->
+          <nav class="nav-menu desktop-nav" aria-label="Main Navigation">
             {navItems.map((item) => (
               <li class="nav-item">
                 <a href={item.href}>{item.label}</a>
@@ -93,6 +93,7 @@ const navItems = [
             ))}
           </nav>
 
+          <!-- Navigation Controls & Actions -->
           <div class="nav-controls">
             <a
               href="/Mohammed_Bilal.pdf"
@@ -110,7 +111,35 @@ const navItems = [
               </svg>
             </a>
             <ThemeToggle />
+            <button
+              type="button"
+              class="mobile-nav-toggle"
+              id="mobile-nav-toggle"
+              aria-label="Toggle navigation menu"
+              aria-expanded="false"
+            >
+              <svg class="icon-open" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="18" x2="21" y2="18" />
+              </svg>
+              <svg class="icon-close" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden>
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
           </div>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div class="mobile-nav-drawer" id="mobile-nav-drawer" hidden>
+          <ul class="mobile-nav-list">
+            {navItems.map((item) => (
+              <li class="mobile-nav-item">
+                <a href={item.href} class="mobile-nav-link">{item.label}</a>
+              </li>
+            ))}
+          </ul>
         </div>
       </header>
 
@@ -120,6 +149,30 @@ const navItems = [
     <ScrollChrome />
 
     <script>
+      // Mobile Drawer Toggle
+      const toggleBtn = document.getElementById("mobile-nav-toggle");
+      const drawer = document.getElementById("mobile-nav-drawer");
+      const iconOpen = toggleBtn?.querySelector(".icon-open");
+      const iconClose = toggleBtn?.querySelector(".icon-close");
+
+      const setMenuOpen = (open: boolean) => {
+        if (!toggleBtn || !drawer) return;
+        toggleBtn.setAttribute("aria-expanded", String(open));
+        drawer.hidden = !open;
+        drawer.classList.toggle("is-open", open);
+        if (iconOpen instanceof SVGElement) iconOpen.hidden = open;
+        if (iconClose instanceof SVGElement) iconClose.hidden = !open;
+      };
+
+      toggleBtn?.addEventListener("click", () => {
+        const isOpen = toggleBtn.getAttribute("aria-expanded") === "true";
+        setMenuOpen(!isOpen);
+      });
+
+      drawer?.querySelectorAll(".mobile-nav-link").forEach((link) => {
+        link.addEventListener("click", () => setMenuOpen(false));
+      });
+
       // Intersection Observer for scroll reveal animations
       const observer = new IntersectionObserver(
         (entries) => {
