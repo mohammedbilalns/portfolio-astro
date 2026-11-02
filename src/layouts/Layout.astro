@@ -158,10 +158,9 @@ const navItems = [
       const setMenuOpen = (open: boolean) => {
         if (!toggleBtn || !drawer) return;
         toggleBtn.setAttribute("aria-expanded", String(open));
+        toggleBtn.classList.toggle("is-active", open);
         drawer.hidden = !open;
         drawer.classList.toggle("is-open", open);
-        if (iconOpen instanceof SVGElement) iconOpen.hidden = open;
-        if (iconClose instanceof SVGElement) iconClose.hidden = !open;
       };
 
       toggleBtn?.addEventListener("click", () => {

@@ -136,6 +136,10 @@ img, svg {
   max-width: 100%;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 button, input, textarea {
   font: inherit;
   color: inherit;
@@ -306,6 +310,18 @@ html[data-theme="light"] .site-header {
   display: none;
 }
 
+.mobile-nav-toggle .icon-close {
+  display: none !important;
+}
+
+.mobile-nav-toggle.is-active .icon-open {
+  display: none !important;
+}
+
+.mobile-nav-toggle.is-active .icon-close {
+  display: block !important;
+}
+
 .mobile-nav-drawer {
   display: none;
 }
@@ -323,17 +339,19 @@ html[data-theme="light"] .site-header {
     justify-content: center;
     width: 32px;
     height: 32px;
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-full);
     border: 1px solid var(--hairline-accent);
     background: var(--paper-surface);
-    color: var(--ink);
+    color: var(--accent);
     cursor: pointer;
     flex-shrink: 0;
     transition: all 160ms ease;
+    padding: 0;
   }
   .mobile-nav-toggle:hover {
     border-color: var(--accent);
-    color: var(--accent);
+    color: var(--ink);
+    background: var(--paper-surface-hover);
   }
   .mobile-nav-drawer {
     display: block;
