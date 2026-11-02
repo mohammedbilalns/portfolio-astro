@@ -1,6 +1,4 @@
 ---
-import SectionHeading from "./SectionHeading.astro";
-
 interface ExperienceItem {
   position: string;
   company: string;
@@ -19,24 +17,31 @@ const { experience } = Astro.props;
 ---
 
 <section class="section" id="experience">
-  <div class="reveal reveal--up">
-    <SectionHeading icon="briefcase" title={experience.title} />
-  </div>
+  <header class="section-head reveal">
+    <p class="section-kicker">Professional Background</p>
+    <h2 class="section-heading-title">Work <em>Experience</em></h2>
+  </header>
 
-  <div class="experience-list">
+  <div class="experience-showcase">
     {experience.items.map((item, index) => (
-      <article class="experience-card reveal reveal--up" style={`--reveal-delay: ${120 + index * 80}ms;`}>
-        <div class="experience-card__top">
-          <div>
-            <h3>{item.company}</h3>
-            <p>{item.position}</p>
+      <article class="experience-card reveal" style={`--reveal-delay: ${index * 80}ms;`}>
+        <div class="card-header">
+          <div class="card-title-group">
+            <h3 class="role-title">{item.position}</h3>
+            <div class="company-badge">
+              <span class="badge-dot" aria-hidden="true"></span>
+              <span class="company-name">{item.company}</span>
+            </div>
           </div>
-          <span>{item.duration}</span>
+          <span class="duration-badge">{item.duration}</span>
         </div>
 
-        <ul>
-          {item.responsibilities.map((entry) => (
-            <li>{entry}</li>
+        <ul class="responsibilities-list">
+          {item.responsibilities.map((resp) => (
+            <li class="resp-item">
+              <span class="bullet-accent" aria-hidden="true">—</span>
+              <span class="resp-text">{resp}</span>
+            </li>
           ))}
         </ul>
       </article>
@@ -45,78 +50,132 @@ const { experience } = Astro.props;
 </section>
 
 <style>
-  .experience-list {
-    display: grid;
-    gap: 1.5rem;
+  .experience-showcase {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
   }
 
   .experience-card {
-    padding: 1.6rem 1.7rem;
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
-    background: linear-gradient(180deg, rgba(19, 19, 19, 0.95), rgba(11, 11, 11, 0.88));
-  }
-
-  .experience-card__top {
+    background: var(--paper-surface);
+    border: 1px solid var(--hairline-accent);
+    border-radius: var(--radius-md);
+    padding: 2.25rem;
     display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+    transition: transform 220ms ease, border-color 220ms ease;
+  }
+
+  html[data-theme="light"] .experience-card {
+    box-shadow: 0 12px 30px rgba(26, 28, 34, 0.05);
+  }
+
+  .experience-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
     justify-content: space-between;
+    flex-wrap: wrap;
     gap: 1rem;
-    margin-bottom: 1rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--hairline);
   }
 
-  .experience-card__top h3,
-  .experience-card__top p,
-  .experience-card__top span {
-    margin: 0;
+  .card-title-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
   }
 
-  .experience-card__top h3 {
-    font-size: 1.5rem;
+  .role-title {
+    font-family: var(--display);
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    line-height: 1.15;
   }
 
-  .experience-card__top p {
-    margin-top: 0.35rem;
-    color: #8ebeff;
+  .company-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
   }
 
-  .experience-card__top span {
-    color: var(--text-muted);
-    white-space: nowrap;
+  .badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: var(--radius-full);
+    background: var(--accent);
   }
 
-  .experience-card ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: grid;
-    gap: 0.8rem;
+  .company-name {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
   }
 
-  .experience-card li {
-    position: relative;
-    padding-left: 1.3rem;
-    color: #d0d8e3;
+  .duration-badge {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    background: var(--paper);
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--hairline);
+  }
+
+  html[data-theme="light"] .duration-badge {
+    background: var(--paper-subtle);
+  }
+
+  .responsibilities-list {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .resp-item {
+    list-style: none !important;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+  }
+
+  .bullet-accent {
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    flex-shrink: 0;
+  }
+
+  .resp-text {
+    font-family: var(--font-serif);
+    font-size: 1.0625rem;
+    color: var(--ink-soft);
     line-height: 1.7;
+    word-break: break-word;
   }
 
-  .experience-card li::before {
-    content: "";
-    position: absolute;
-    top: 0.72rem;
-    left: 0;
-    width: 0.42rem;
-    height: 0.42rem;
-    border-radius: 999px;
-    background: #38bdf8;
-  }
-
-  @media (max-width: 720px) {
-    .experience-card__top {
-      flex-direction: column;
-    }
-
-    .experience-card__top span {
-      white-space: normal;
+  @media (max-width: 640px) {
+    .experience-card {
+      padding: 1.25rem 1rem;
+      gap: 1.15rem;
     }
   }
 </style>

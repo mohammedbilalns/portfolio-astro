@@ -25,7 +25,7 @@
       }
     ],
     "footer": {
-      "copyright": "© 2026 Mohammed Bilal N S. Built with Astro and a custom component system."
+      "copyright": "© 2026 Mohammed Bilal N S"
     }
   },
   "hero": {
@@ -43,20 +43,20 @@
   },
   "about": {
     "title": "About Me",
-    "description": "I'm a Full-Stack Software Developer focused on building scalable, secure, and modern web applications. I enjoy solving problems, writing clean maintainable code, and learning through hands-on development.",
-    "descriptionHtml": "I'm a Full-Stack Software Developer focused on building scalable, secure, and modern web applications. I enjoy solving problems, writing clean maintainable code, and learning through hands-on development. I also like tinkering with different technologies, especially GNU/Linux, and maintain a public <a href=\"https://github.com/mohammedbilalns/dotfiles\" target=\"_blank\" rel=\"noreferrer\">dotfiles repo</a> for my setup."
+    "description": "I'm a Full-Stack Developer and persistent tinkerer who loves pulling systems apart to understand how they work under the hood. Focused on building scalable, resilient applications through hands-on experimentation, clean maintainable code, and continuous exploration.",
+    "descriptionHtml": "I'm a Full-Stack Developer and persistent tinkerer who loves pulling systems apart to understand how they work under the hood. Focused on building scalable, resilient applications through hands-on experimentation, clean maintainable code, and continuous exploration."
   },
   "education": {
     "title": "Educational Background",
     "items": [
       {
         "degree": "MSc Mathematics",
-        "institution": "Kerala University",
+        "institution": "TKM College of Arts and Science, Kollam, Kerala (University of Kerala)",
         "duration": "2021–2023"
       },
       {
         "degree": "BSc Mathematics",
-        "institution": "Kerala University",
+        "institution": "TKM College of Arts and Science, Kollam, Kerala (University of Kerala)",
         "duration": "2018–2021"
       }
     ]

@@ -1,22 +1,15 @@
 ---
-import Icon from "./Icon.astro";
-
 interface Props {
-  icon: string;
+  tag?: string;
   title: string;
   subtitle?: string;
 }
 
-const { icon, title, subtitle } = Astro.props;
+const { tag, title, subtitle } = Astro.props;
 ---
 
-<div class="section__heading">
-  <div class="section__eyebrow">
-    <span class="section__icon" aria-hidden="true">
-      <Icon name={icon} class="section__icon-svg" />
-    </span>
-    <h2 class="section__title">{title}</h2>
-  </div>
-  {subtitle && <p class="section__subtitle">{subtitle}</p>}
-  <div class="section__line" aria-hidden="true"></div>
-</div>
+<header class="section-head reveal">
+  {tag && <p class="section-kicker">{tag}</p>}
+  <h2 class="section-heading-title" set:html={title} />
+  {subtitle && <p class="section-subtitle">{subtitle}</p>}
+</header>

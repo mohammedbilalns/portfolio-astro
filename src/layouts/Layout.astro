@@ -3,11 +3,6 @@ import ScrollChrome from "../components/ScrollChrome.astro";
 import ThemeToggle from "../components/ThemeToggle.astro";
 import "../styles/global.css";
 
-interface NavItem {
-  label: string;
-  href: string;
-}
-
 interface Props {
   title: string;
   description: string;
@@ -19,20 +14,37 @@ const siteUrl = "https://bilalnsmuhammed.in";
 const { title, description, path = "/", jsonLd } = Astro.props;
 const canonicalUrl = new URL(path, siteUrl).toString();
 const ogImageUrl = new URL("/banner-profile.png", siteUrl).toString();
+
+const navItems = [
+  { label: "Work", href: "#projects" },
+  { label: "Stack", href: "#skills" },
+  { label: "Experience", href: "#experience" },
+  { label: "Education", href: "#about" },
+  { label: "Contact", href: "#contact" },
+];
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="shortcut icon" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#e5e8ec" />
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#050505" />
+
+    <!-- Google Fonts: Instrument Serif + Newsreader + JetBrains Mono + Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#eeeae2" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#08090d" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
@@ -44,7 +56,9 @@ const ogImageUrl = new URL("/banner-profile.png", siteUrl).toString();
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
     <title>{title}</title>
+
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+
     <script is:inline>
       try {
         const stored = localStorage.getItem("theme");
@@ -61,13 +75,104 @@ const ogImageUrl = new URL("/banner-profile.png", siteUrl).toString();
     </script>
   </head>
   <body>
-    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
     <div class="site-shell">
+      <header class="site-header">
+        <div class="site-header__inner">
+          <a href="#home" class="nav-brand" aria-label="Mohammed Bilal - Home">
+            <span class="nav-brand__name">Mohammed Bilal N S</span>
+          </a>
+
+          <!-- Desktop Navigation Menu -->
+          <nav class="nav-menu desktop-nav" aria-label="Main Navigation">
+            {navItems.map((item) => (
+              <li class="nav-item">
+                <a href={item.href}>{item.label}</a>
+              </li>
+            ))}
+          </nav>
+
+          <!-- Navigation Controls & Actions -->
+          <div class="nav-controls">
+            <a
+              href="/Mohammed_Bilal.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              download="Mohammed_Bilal.pdf"
+              class="nav-resume-btn"
+              title="Download Resume PDF"
+            >
+              <span>Resume</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+            </a>
+            <ThemeToggle />
+            <button
+              type="button"
+              class="mobile-nav-toggle"
+              id="mobile-nav-toggle"
+              aria-label="Toggle navigation menu"
+              aria-expanded="false"
+            >
+              <svg class="icon-open" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="18" x2="21" y2="18" />
+              </svg>
+              <svg class="icon-close" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden>
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div class="mobile-nav-drawer" id="mobile-nav-drawer" hidden>
+          <ul class="mobile-nav-list">
+            {navItems.map((item) => (
+              <li class="mobile-nav-item">
+                <a href={item.href} class="mobile-nav-link">{item.label}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </header>
+
       <slot />
     </div>
-    <ThemeToggle />
+
     <ScrollChrome />
+
     <script>
+      // Mobile Drawer Toggle
+      const toggleBtn = document.getElementById("mobile-nav-toggle");
+      const drawer = document.getElementById("mobile-nav-drawer");
+      const iconOpen = toggleBtn?.querySelector(".icon-open");
+      const iconClose = toggleBtn?.querySelector(".icon-close");
+
+      const setMenuOpen = (open: boolean) => {
+        if (!toggleBtn || !drawer) return;
+        toggleBtn.setAttribute("aria-expanded", String(open));
+        toggleBtn.classList.toggle("is-active", open);
+        drawer.hidden = !open;
+        drawer.classList.toggle("is-open", open);
+      };
+
+      toggleBtn?.addEventListener("click", () => {
+        const isOpen = toggleBtn.getAttribute("aria-expanded") === "true";
+        setMenuOpen(!isOpen);
+      });
+
+      drawer?.querySelectorAll(".mobile-nav-link").forEach((link) => {
+        link.addEventListener("click", () => setMenuOpen(false));
+      });
+
+      // Intersection Observer for scroll reveal animations
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -77,7 +182,7 @@ const ogImageUrl = new URL("/banner-profile.png", siteUrl).toString();
             }
           });
         },
-        { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
+        { threshold: 0.08, rootMargin: "0px 0px -40px 0px" },
       );
 
       document.querySelectorAll(".reveal").forEach((element) => {
