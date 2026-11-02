@@ -20,33 +20,27 @@ const { techArsenal } = Astro.props;
 const disciplines = [
   {
     title: "Languages & Runtimes",
-    technologies: "TypeScript · JavaScript · Go · Python · Node.js",
-    focus: "Type-safe engineering, concurrent services, and modular application logic."
+    technologies: "TypeScript · JavaScript · Go · Python · Node.js"
   },
   {
     title: "Backend Architecture & Systems",
-    technologies: "Express.js · NestJS · Fastify · BullMQ · RESTful APIs",
-    focus: "Clean Architecture, asynchronous job queues, and robust distributed services."
+    technologies: "Express.js · NestJS · Fastify · BullMQ · RESTful APIs"
   },
   {
     title: "Databases, Caching & Persistence",
-    technologies: "PostgreSQL · MongoDB · Redis · SQLite",
-    focus: "Relational data modeling, high-speed key-value caching, and transactional integrity."
+    technologies: "PostgreSQL · MongoDB · Redis · SQLite"
   },
   {
     title: "Real-Time Protocols & Media",
-    technologies: "WebRTC · WebSockets · Socket.io",
-    focus: "Low-latency peer-to-peer audio/video streaming and live bidirectional event dispatching."
+    technologies: "WebRTC · WebSockets · Socket.io"
   },
   {
     title: "Frontend Engineering & State",
-    technologies: "React.js · Next.js · TanStack Start · TanStack Query · Redux Toolkit · Zustand · Tailwind CSS",
-    focus: "High-performance reactive interfaces, optimistic mutations, and resilient state machines."
+    technologies: "React.js · Next.js · TanStack Start · TanStack Query · Redux Toolkit · Zustand · Tailwind CSS"
   },
   {
     title: "Cloud, Infrastructure & Tooling",
-    technologies: "Docker · AWS EC2 · Linux Systems · Nginx · GitHub Actions · Git · Grafana · Loki",
-    focus: "Containerized deployments, VPS orchestration, CI/CD pipelines, and observability."
+    technologies: "Docker · AWS EC2 · Linux Systems · Nginx · GitHub Actions · Git · Grafana · Loki"
   }
 ];
 ---
@@ -67,7 +61,6 @@ const disciplines = [
         </div>
         <div class="discipline-col-techs">
           <div class="techs-list">{d.technologies}</div>
-          <p class="techs-focus">{d.focus}</p>
         </div>
       </div>
     ))}
@@ -85,7 +78,8 @@ const disciplines = [
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.8fr);
     gap: 2rem;
-    padding: 2rem 0;
+    padding: 1.75rem 0;
+    align-items: center;
     border-bottom: 1px solid var(--hairline);
     transition: background-color 160ms ease;
   }
@@ -113,31 +107,23 @@ const disciplines = [
 
   .discipline-col-techs {
     display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
+    align-items: center;
   }
 
   .techs-list {
     font-family: var(--font-mono);
     font-size: 0.875rem;
-    color: var(--ink);
-    line-height: 1.6;
+    color: var(--ink-soft);
+    line-height: 1.7;
     letter-spacing: 0.02em;
-  }
-
-  .techs-focus {
-    font-family: var(--font-serif);
-    font-size: 0.9375rem;
-    font-style: italic;
-    color: var(--ink-muted);
-    line-height: 1.6;
   }
 
   @media (max-width: 768px) {
     .discipline-entry {
       grid-template-columns: 1fr;
-      gap: 0.75rem;
-      padding: 1.5rem 0;
+      gap: 0.6rem;
+      padding: 1.25rem 0;
+      align-items: flex-start;
     }
   }
 </style>
