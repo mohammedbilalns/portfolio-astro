@@ -175,6 +175,12 @@ const socialLinks = [
     font-style: italic;
     font-family: var(--display);
     color: var(--accent);
+    display: inline-block;
+    transition: text-shadow 300ms ease;
+  }
+
+  .hero-statement:hover em {
+    text-shadow: 0 0 24px var(--accent-glow);
   }
 
   .hero-bio {
@@ -214,6 +220,7 @@ const socialLinks = [
   .discipline-val {
     font-size: 0.875rem;
     color: var(--ink-soft);
+    word-break: break-word;
   }
 
   .hero-actions-row {
@@ -227,6 +234,12 @@ const socialLinks = [
   .btn-arrow {
     font-family: var(--font-mono);
     font-size: 0.8125rem;
+    display: inline-block;
+    transition: transform 180ms ease;
+  }
+
+  .btn:hover .btn-arrow {
+    transform: translateY(2px);
   }
 
   .hero-footprint {
@@ -279,6 +292,12 @@ const socialLinks = [
   .footprint-arrow {
     font-size: 0.75rem;
     opacity: 0.7;
+    display: inline-block;
+    transition: transform 180ms ease;
+  }
+
+  .footprint-link:hover .footprint-arrow {
+    transform: translate(2px, -2px);
   }
 
   /* Portrait Column */
