@@ -1,5 +1,4 @@
 ---
-import { Icon as AstroIcon } from "astro-icon/components";
 import SectionHeading from "./SectionHeading.astro";
 
 interface TechArsenalItem {
@@ -18,123 +17,127 @@ interface Props {
 
 const { techArsenal } = Astro.props;
 
-// Tailwind palette names stored in data mapped to hex (no Tailwind dependency).
-const colorMap: Record<string, string> = {
-  "text-blue-400": "#60a5fa",
-  "text-yellow-400": "#facc15",
-  "text-blue-500": "#3b82f6",
-  "text-cyan-400": "#22d3ee",
-  "text-green-400": "#4ade80",
-  "text-gray-400": "#9ca3af",
-  "text-red-500": "#ef4444",
-  "text-red-400": "#f87171",
-  "text-purple-500": "#a855f7",
-  "text-orange-500": "#f97316",
-  "text-orange-400": "#fb923c",
-  "text-gray-300": "#d1d5db",
-  "text-purple-400": "#c084fc",
-  "text-black": "#e5e7eb",
-};
-
-const resolveColor = (name: string) => colorMap[name] ?? "#93c5fd";
+const disciplines = [
+  {
+    title: "Languages & Runtimes",
+    technologies: "TypeScript · JavaScript · Go · Python · Node.js",
+    focus: "Type-safe engineering, concurrent services, and modular application logic."
+  },
+  {
+    title: "Backend Architecture & Systems",
+    technologies: "Express.js · NestJS · Fastify · BullMQ · RESTful APIs",
+    focus: "Clean Architecture, asynchronous job queues, and robust distributed services."
+  },
+  {
+    title: "Databases, Caching & Persistence",
+    technologies: "PostgreSQL · MongoDB · Redis · SQLite",
+    focus: "Relational data modeling, high-speed key-value caching, and transactional integrity."
+  },
+  {
+    title: "Real-Time Protocols & Media",
+    technologies: "WebRTC · WebSockets · Socket.io",
+    focus: "Low-latency peer-to-peer audio/video streaming and live bidirectional event dispatching."
+  },
+  {
+    title: "Frontend Engineering & State",
+    technologies: "React.js · Next.js · TanStack Start · TanStack Query · Redux Toolkit · Zustand · Tailwind CSS",
+    focus: "High-performance reactive interfaces, optimistic mutations, and resilient state machines."
+  },
+  {
+    title: "Cloud, Infrastructure & Tooling",
+    technologies: "Docker · AWS EC2 · Linux Systems · Nginx · GitHub Actions · Git · Grafana · Loki",
+    focus: "Containerized deployments, VPS orchestration, CI/CD pipelines, and observability."
+  }
+];
 ---
 
 <section class="section" id="skills">
-  <div class="reveal reveal--up">
-    <SectionHeading icon="cpu-chip" title={techArsenal.title} subtitle={techArsenal.subtitle} />
-  </div>
+  <header class="section-head reveal">
+    <p class="section-kicker">Technical Repertoire</p>
+    <h2 class="section-heading-title">Engineering <em>Disciplines</em></h2>
+    <p class="section-subtitle">{techArsenal.subtitle}</p>
+  </header>
 
-  <div class="tech-arsenal-grid">
-    {techArsenal.items.map((item, index) => (
-      <article class="tech-card reveal reveal--up" style={`--reveal-delay: ${index * 30}ms;`}>
-        <div class="tech-card__icon" style={`--icon-color: ${resolveColor(item.color)};`}>
-          <AstroIcon name={item.icon} class="tech-card__icon-svg" />
+  <div class="disciplines-table reveal" style="--reveal-delay: 80ms;">
+    {disciplines.map((d, index) => (
+      <div class="discipline-entry">
+        <div class="discipline-col-title">
+          <span class="discipline-index">0{index + 1}</span>
+          <h3 class="discipline-name">{d.title}</h3>
         </div>
-        <span class="tech-card__name">{item.name}</span>
-      </article>
+        <div class="discipline-col-techs">
+          <div class="techs-list">{d.technologies}</div>
+          <p class="techs-focus">{d.focus}</p>
+        </div>
+      </div>
     ))}
   </div>
 </section>
 
 <style>
-  .tech-arsenal-grid {
+  .disciplines-table {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--hairline);
+  }
+
+  .discipline-entry {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.8fr);
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--hairline);
+    transition: background-color 160ms ease;
+  }
+
+  .discipline-col-title {
+    display: flex;
+    align-items: baseline;
     gap: 1rem;
   }
 
-  .tech-card {
+  .discipline-index {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+
+  .discipline-name {
+    font-family: var(--display);
+    font-size: 1.45rem;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .discipline-col-techs {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 1.25rem 1rem;
-    border-radius: var(--radius);
-    border: 1px solid rgba(96, 165, 250, 0.2);
-    background: linear-gradient(180deg, rgba(12, 18, 28, 0.72), rgba(12, 12, 12, 0.9));
-    transition: all 0.3s ease;
-    text-align: center;
+    gap: 0.4rem;
   }
 
-  .tech-card:hover {
-    border-color: rgba(96, 165, 250, 0.5);
-    background: linear-gradient(180deg, rgba(12, 18, 28, 0.9), rgba(12, 12, 12, 1));
-    transform: translateY(-2px) scale(1.02);
+  .techs-list {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--ink);
+    line-height: 1.6;
+    letter-spacing: 0.02em;
   }
 
-  .tech-card__icon {
-    width: 3rem;
-    height: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 0.75rem;
-    background: linear-gradient(135deg, rgba(96, 165, 250, 0.15), rgba(12, 18, 28, 0.5));
-    border: 1px solid var(--icon-color);
-    transition: all 0.3s ease;
+  .techs-focus {
+    font-family: var(--font-serif);
+    font-size: 0.9375rem;
+    font-style: italic;
+    color: var(--ink-muted);
+    line-height: 1.6;
   }
 
-  .tech-card:hover .tech-card__icon {
-    transform: scale(1.1);
-    border-color: var(--icon-color);
-    box-shadow: 0 0 20px var(--icon-color);
-  }
-
-  .tech-card__icon-svg {
-    width: 1.75rem;
-    height: 1.75rem;
-    color: var(--icon-color);
-    flex: 0 0 auto;
-  }
-
-  .tech-card__name {
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: #d8e1ea;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
-  }
-
-  @media (max-width: 640px) {
-    .tech-arsenal-grid {
-      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  @media (max-width: 768px) {
+    .discipline-entry {
+      grid-template-columns: 1fr;
       gap: 0.75rem;
-    }
-
-    .tech-card {
-      padding: 1rem 0.75rem;
-    }
-
-    .tech-card__icon {
-      width: 2.5rem;
-      height: 2.5rem;
-    }
-
-    .tech-card__icon-svg {
-      width: 1.5rem;
-      height: 1.5rem;
+      padding: 1.5rem 0;
     }
   }
 </style>
